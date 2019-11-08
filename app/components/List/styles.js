@@ -51,4 +51,16 @@ export default EStyleSheet.create({
   checkIcon: {
     width: 18,
   },
+  testicon: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000',
+  },
+  testtext: {
+    color: '#fff',
+    width: 18,
+  },
 });

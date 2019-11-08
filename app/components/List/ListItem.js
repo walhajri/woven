@@ -1,42 +1,51 @@
-import PropTypes, { symbol } from 'prop-types';
+import PropTypes, {symbol} from 'prop-types';
 import React from 'react';
 import {View, Text, TouchableHighlight, Image} from 'react-native';
 import styles from './styles';
-import {ButtonWithText} from '../Buttons/ButtonWithText';
+import {ButtonDaysList} from '../Buttons/ButtonDaysList';
+import {IconWithText} from '../Buttons/IconWithText';
+import assetsObject from '../../assets/assets';
+
 const ListItem = ({
+  img,
   jobCompany,
   jobTile,
   jobLocation,
   jobTotalSalary,
   onPress,
+  jobDays,
   visible,
-}) => (
-  <TouchableHighlight onPress={onPress} underlayColor={styles.$underlayColor}>
-    <View>
-      <View style={styles.row}>
-        <Image
-          style={styles.image}
-          source={require('../../data/images/starbucks.png')}
-        />
-        <View style={styles.groupText}>
-          <Text style={styles.secondaryText}>{jobCompany}</Text>
-          <Text style={styles.primaryText}>{jobTile}</Text>
-          <Text style={styles.secondaryText}>{jobLocation}</Text>
+}) => {
+  return (
+    <TouchableHighlight onPress={onPress} underlayColor={styles.$underlayColor}>
+      <View>
+        <View style={styles.row}>
+          {img === '' ? (
+            <Image style={styles.image} source={assetsObject.companyIcon} />
+          ) : (
+            <Image style={styles.image} source={{uri: img}} />
+          )}
+          <View style={styles.groupText}>
+            <Text style={styles.secondaryText}>{jobCompany}</Text>
+            <Text style={styles.primaryText}>{jobTile}</Text>
+            <Text style={styles.secondaryText}>{jobLocation}</Text>
+          </View>
+          <View>
+            <Text style={styles.primaryText}>SR {jobTotalSalary}</Text>
+          </View>
         </View>
-        <View>
-          <Text style={styles.primaryText}>SR {jobTotalSalary}</Text>
-        </View>
+        <ButtonDaysList list={jobDays} />
       </View>
-      {/* <Text style={styles.text}>{text}</Text> */}
-      <ButtonWithText />
-    </View>
-  </TouchableHighlight>
-);
+    </TouchableHighlight>
+  );
+};
 ListItem.propTypes = {
+  img: PropTypes.any,
   jobCompany: PropTypes.string,
   jobTile: PropTypes.string,
   jobLocation: PropTypes.string,
   jobTotalSalary: PropTypes.string,
+  jobDays: PropTypes.array,
   onPress: PropTypes.func,
   checkmark: PropTypes.bool,
   selected: PropTypes.bool,
