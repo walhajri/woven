@@ -18,11 +18,13 @@ class Home extends Component {
             data={offers}
             renderItem={({item}) => (
               <ListItem
+                img={item.img}
                 jobTile={item.jobTile}
                 jobLocation={item.jobLocation}
                 jobTotalSalary={item.jobTotalSalary}
                 jobCompany={item.jobCompany}
                 onPress={this.handlePress}
+                jobDays={item.jobDays}
               />
             )}
             keyExtractor={item => item}
