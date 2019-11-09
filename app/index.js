@@ -1,7 +1,6 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import Home from './screens/Home';
-import Navigator from './config/routes';
+import MainNavigator from './config/routes';
 
 EStyleSheet.build({
   $primaryColor: '#00bcd4',
@@ -13,4 +12,4 @@ EStyleSheet.build({
   $border: '#E2E2E2',
   $white: '#ffff',
 });
-export default () => <Home />;
+export default () => <MainNavigator />;

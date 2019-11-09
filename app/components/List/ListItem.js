@@ -20,11 +20,10 @@ const ListItem = ({
     <TouchableHighlight onPress={onPress} underlayColor={styles.$underlayColor}>
       <View>
         <View style={styles.row}>
-          {img === '' ? (
-            <Image style={styles.image} source={assetsObject.companyIcon} />
-          ) : (
-            <Image style={styles.image} source={{uri: img}} />
-          )}
+          <Image
+            style={styles.image}
+            source={img ? {uri: img} : assetsObject.companyIcon}
+          />
           <View style={styles.groupText}>
             <Text style={styles.secondaryText}>{jobCompany}</Text>
             <Text style={styles.primaryText}>{jobTile}</Text>

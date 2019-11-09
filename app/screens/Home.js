@@ -4,13 +4,17 @@ import offers from '../data/offers';
 import {ListItem, Separator} from '../components/List';
 import {Icon} from 'react-native-elements';
 import {Container} from '../components/Container';
+import PropTypes from 'prop-types';
 
 class Home extends Component {
-  handlePress = () => {
+handlePress = () => {
     console.log('do something amazing');
+    const {navigate} = this.props.navigation;
+    navigate('JobDetails');
   };
 
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <Container>
         <View>
