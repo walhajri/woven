@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {View, Text, TouchableHighlight, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
 import {IconWithText} from '../IconWithText';
 import styles from './styles';
 

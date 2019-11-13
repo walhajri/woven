@@ -7,14 +7,12 @@ import {Container} from '../components/Container';
 import PropTypes from 'prop-types';
 
 class Home extends Component {
-handlePress = () => {
-    console.log('do something amazing');
+  handlePress = item => {
     const {navigate} = this.props.navigation;
-    navigate('JobDetails');
+    navigate('JobDetails', {item: item});
   };
 
   render() {
-    const {navigate} = this.props.navigation;
     return (
       <Container>
         <View>
@@ -27,11 +25,11 @@ handlePress = () => {
                 jobLocation={item.jobLocation}
                 jobTotalSalary={item.jobTotalSalary}
                 jobCompany={item.jobCompany}
-                onPress={this.handlePress}
+                onPress={() => this.handlePress(item)}
                 jobDays={item.jobDays}
               />
             )}
-            keyExtractor={item => item}
+            keyExtractor={(item, index) => index.toString()}
             ItemSeparatorComponent={Separator}
           />
         </View>

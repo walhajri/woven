@@ -1,8 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-
 import styles from './styles';
 
-const Separator = () => <View style={styles.separator} />;
+const Divider = () => <View style={styles.divider} />;
 
-export default Separator;
+export default Divider;
