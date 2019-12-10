@@ -4,6 +4,5 @@ export default EStyleSheet.create({
   container: {
     flex: 0,
     justifyContent: 'center',
-    marginTop: 44,
   },
 });

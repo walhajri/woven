@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import styles from './styles';
 
 const Container = ({children}) => (
-  <View style={styles.container}>{children}</View>
+  <SafeAreaView>
+    <View style={styles.container}>{children}</View>
+  </SafeAreaView>
 );
 
 Container.propTypes = {
