@@ -16,21 +16,33 @@ class Login extends Component {
       marginTop: 200,
       margin: 10,
     };
-    const button = {
+    const submitButton = {
       marginTop: 10,
       marginRight: 50,
       marginLeft: 50,
     };
+    const row = {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    };
+    const clearButton = {
+      alignContent: 'flex-end',
+    };
+
     return (
       <Container>
         <View style={layout}>
           <Input placeholder="example@google.com" label="Email" />
-          <Input placeholder="example@google.com" label="Password" />
+          <Input placeholder="******" label="Password" />
           <Button
-            style={button}
+            style={submitButton}
             title="Login"
             onPress={() => this.handlePress()}
           />
+          <View style={row}>
+            <Button style={clearButton} type="clear" title="Forgot Password?" />
+            <Button style={clearButton} type="clear" title="Register" />
+          </View>
         </View>
       </Container>
     );
