@@ -10,12 +10,23 @@ class Home extends Component {
     navigate('JobDetails', {item: item});
   };
 
+  state = {
+    positions: {},
+  };
+
+  async componentDidMount() {
+    var positions = await offers();
+    this.setState({
+      positions: positions,
+    });
+  }
+
   render() {
     return (
       <Container>
         <View>
           <FlatList
-            data={offers}
+            data={this.state.positions}
             renderItem={({item}) => (
               <ListItem
                 img={item.img}

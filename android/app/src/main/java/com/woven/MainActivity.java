@@ -1,4 +1,4 @@
-package com.woven;
+package com.woven.app;
 
 import com.facebook.react.ReactActivity;
 

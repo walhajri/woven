@@ -2,12 +2,25 @@ import Home from '../screens/Home';
 import JobDetails from '../screens/JobDetails';
 import Login from '../screens/Login';
 import AppliedJobs from '../screens/AppliedJobs';
+import CandidateStatus from '../screens/CandidateStatus';
 import Register from '../screens/Register';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
   {
+    Home: {
+      screen: Home,
+      navigationOptions: () => ({
+        title: 'Home',
+      }),
+    },
+    CandidateStatus: {
+      screen: CandidateStatus,
+      navigationOptions: () => ({
+        title: 'Job Status',
+      }),
+    },
     AppliedJobs: {
       screen: AppliedJobs,
       navigationOptions: () => ({
@@ -24,12 +37,6 @@ const MainNavigator = createStackNavigator(
       screen: Login,
       navigationOptions: () => ({
         title: 'Login',
-      }),
-    },
-    Home: {
-      screen: Home,
-      navigationOptions: () => ({
-        title: 'Home',
       }),
     },
     JobDetails: {

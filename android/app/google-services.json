@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "236428377808",
+    "firebase_url": "https://woven-1e170.firebaseio.com",
+    "project_id": "woven-1e170",
+    "storage_bucket": "woven-1e170.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236428377808:android:f5817126af19f64b0f28d5",
+        "android_client_info": {
+          "package_name": "com.woven.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236428377808-d7jbi5a05ei72ldanb2gdlpsf10v3862.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYnLlfk-jyavugTtz2zHc3Q696tt6cjj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236428377808-d7jbi5a05ei72ldanb2gdlpsf10v3862.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "236428377808-3u70tnd4196ep3ulg6fqtqdkhanm7r62.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.woven.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

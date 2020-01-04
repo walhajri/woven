@@ -33,7 +33,7 @@ class Login extends Component {
       <Container>
         <View style={layout}>
           <Input placeholder="example@google.com" label="Email" />
-          <Input placeholder="******" label="Password" />
+          <Input placeholder="******" label="Password" secureTextEntry />
           <Button
             style={submitButton}
             title="Login"

@@ -8,7 +8,7 @@ class JobDetails extends Component {
   handlePress = () => {
     console.log('apply for the job and add it to the list');
     const {navigate} = this.props.navigation;
-    navigate('Login');
+    navigate('AppliedJobs');
   };
   render() {
     const pagelayout = {margin: 20};
