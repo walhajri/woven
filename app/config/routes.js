@@ -3,6 +3,7 @@ import JobDetails from '../screens/JobDetails';
 import Login from '../screens/Login';
 import AppliedJobs from '../screens/AppliedJobs';
 import CandidateStatus from '../screens/CandidateStatus';
+import PreRegister from '../screens/PreRegister';
 import Register from '../screens/Register';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
@@ -15,6 +16,24 @@ const MainNavigator = createStackNavigator(
         title: 'Home',
       }),
     },
+    Login: {
+      screen: Login,
+      navigationOptions: () => ({
+        title: 'Login',
+      }),
+    },
+    PreRegister: {
+      screen: PreRegister,
+      navigationOptions: () => ({
+        title: 'Register',
+      }),
+    },
+    Register: {
+      screen: Register,
+      navigationOptions: () => ({
+        title: 'Register',
+      }),
+    },
     CandidateStatus: {
       screen: CandidateStatus,
       navigationOptions: () => ({
@@ -25,18 +44,6 @@ const MainNavigator = createStackNavigator(
       screen: AppliedJobs,
       navigationOptions: () => ({
         title: 'Applied Jobs',
-      }),
-    },
-    Register: {
-      screen: Register,
-      navigationOptions: () => ({
-        title: 'Register',
-      }),
-    },
-    Login: {
-      screen: Login,
-      navigationOptions: () => ({
-        title: 'Login',
       }),
     },
     JobDetails: {

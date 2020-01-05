@@ -10,12 +10,20 @@ class AppliedJob extends Component {
     navigate('JobDetails', {item: item});
   };
 
+  async componentDidMount() {
+    console.log('here ');
+    var positions = await appliedJobs();
+    this.setState({appliedPositions: positions});
+  }
+
+  state = {appliedPositions: {}};
+
   render() {
     return (
       <Container>
         <View>
           <FlatList
-            data={appliedJobs}
+            data={this.state.appliedPositions}
             renderItem={({item}) => (
               <ListItem
                 img={item.img}

@@ -3,6 +3,7 @@ import {FlatList, View} from 'react-native';
 import offers from '../data/offers';
 import {ListItem, Separator} from '../components/List';
 import {Container} from '../components/Container';
+import auth from '@react-native-firebase/auth';
 
 class Home extends Component {
   handlePress = item => {

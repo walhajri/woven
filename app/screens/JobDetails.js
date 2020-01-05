@@ -3,12 +3,18 @@ import {Text, FlatList, Button} from 'react-native';
 import {Container} from '../components/Container';
 import {Divider} from '../components/Shapes/Divider';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import auth from '@react-native-firebase/auth';
 
 class JobDetails extends Component {
   handlePress = () => {
     console.log('apply for the job and add it to the list');
     const {navigate} = this.props.navigation;
-    navigate('AppliedJobs');
+    console.log(auth().currentUser);
+    if (auth().currentUser) {
+      navigate('AppliedJobs', {job: this.render.param});
+    } else {
+      navigate('Login');
+    }
   };
   render() {
     const pagelayout = {margin: 20};
@@ -18,7 +24,6 @@ class JobDetails extends Component {
       fontWeight: 'bold',
     };
     const param = this.props.navigation.getParam('item');
-    console.log(param);
     return (
       <Container>
         <Text style={title}>Job Title:</Text>

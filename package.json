@@ -12,6 +12,7 @@
   "dependencies": {
     "@isitha/react-native-timeline-listview": "^0.2.3",
     "@react-native-firebase/app": "^6.2.0",
+    "@react-native-firebase/auth": "^6.2.0",
     "@react-native-firebase/firestore": "^6.2.0",
     "hoist-non-react-statics": "^3.3.0",
     "react": "16.9.0",
