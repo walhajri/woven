@@ -1,22 +1,25 @@
 import React, {Component} from 'react';
 import {FlatList, View} from 'react-native';
 import appliedJobs from '../data/appliedJobs';
+import appliedJobStatus from '../data/appliedJobStatus';
 import {ListItem, Separator} from '../components/List';
 import {Container} from '../components/Container';
 
 class AppliedJob extends Component {
   handlePress = item => {
     const {navigate} = this.props.navigation;
-    navigate('JobDetails', {item: item});
+    console.log('******** status **********', this.state.appliedJobStatus);
+    console.log('******** job *************', item);
+    navigate('CandidateStatus', {item: item});
   };
 
   async componentDidMount() {
-    console.log('here ');
-    var positions = await appliedJobs();
-    this.setState({appliedPositions: positions});
+    let positions = await appliedJobs();
+    let status = await appliedJobStatus();
+    this.setState({appliedPositions: positions, appliedJobStatus: status});
   }
 
-  state = {appliedPositions: {}};
+  state = {appliedPositions: {}, appliedJobStatus: {}};
 
   render() {
     return (

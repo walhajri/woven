@@ -2,21 +2,23 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
 let db = firestore();
-// let appliedJobs = [];
 
 async function getAppliedJobs() {
   var finalList = [];
+  let postionID = {};
   await db
     .collection('appliedJobs')
     .get()
     .then(snapshot => {
-      snapshot.docs.forEach(doc => {
+      snapshot.docs.forEach((doc, index, array) => {
         let data = doc.data();
         if (auth().currentUser.uid === data.seekerID) {
-          finalList = getPositions(data.postion);
+          postionID[data.postion] = data.postion;
+          if (index === array.length - 1) {
+            finalList = getPositions(postionID);
+          }
         }
       });
-      console.log(auth().currentUser.uid);
     });
   return finalList;
 }
@@ -28,12 +30,12 @@ async function getPositions(post) {
     .then(snapshot => {
       snapshot.docs.forEach(doc => {
         let data = doc.data();
-        if (post === doc.id) {
+        //TODO: find a better maybe hashmap will do it
+        if (post[doc.id] !== undefined) {
           appliedJobs.push(data);
         }
       });
     });
-  console.log('appliedJobs final list', appliedJobs);
   return appliedJobs;
 }
 export default getAppliedJobs;

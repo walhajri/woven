@@ -7,9 +7,7 @@ import auth from '@react-native-firebase/auth';
 
 class JobDetails extends Component {
   handlePress = () => {
-    console.log('apply for the job and add it to the list');
     const {navigate} = this.props.navigation;
-    console.log(auth().currentUser);
     if (auth().currentUser) {
       navigate('AppliedJobs', {job: this.render.param});
     } else {

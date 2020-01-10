@@ -8,7 +8,6 @@ import auth from '@react-native-firebase/auth';
 Icon.loadFont();
 class Login extends Component {
   handlePress = () => {
-    console.log('login');
     this.signin();
     if (auth().currentUser) {
       const {navigate} = this.props.navigation;

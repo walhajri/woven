@@ -12,46 +12,55 @@ class CandidateStatus extends Component {
     const {navigate} = this.props.navigation;
     navigate('JobDetails', {item: item});
   };
+  constructor() {
+    super();
+    this.data = [
+      {
+        time: '17 Jan',
+        title: 'Submit Request',
+        circleColor: '#009688',
+        lineColor: '#009688',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet sem felis. Curabitur tempor lacinia felis et ullamcorper. Aliquam tristique quis erat eu lacinia. Praesent mollis at ligula id.',
+      },
+      {
+        time: '18 Jan',
+        title: 'Reviewed by Business',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet sem felis. Curabitur tempor lacinia felis et ullamcorper. Aliquam tristique quis erat eu lacinia. Praesent mollis at ligula id.',
+      },
+      {
+        time: '20 Jan',
+        title: 'Accepted',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet sem felis. Curabitur tempor lacinia felis et ullamcorper. Aliquam tristique quis erat eu lacinia. Praesent mollis at ligula id.',
+      },
+    ];
+  }
   render() {
-    // const styles = EStyleSheet.create({
-    //   container: {
-    //     flex: 1,
-    //     padding: 20,
-    //     paddingTop: 65,
-    //     backgroundColor: 'white',
-    //   },
-    //   list: {
-    //     flex: 1,
-    //     marginTop: 20,
-    //   },
-    // });
-    const iconStyleSuccess = {
-      fontSize: 56,
-      color: EStyleSheet.value('$primaryColor'),
+    const timeStyle = {
+      textAlign: 'center',
+      backgroundColor: EStyleSheet.value('$primaryColor'),
+      color: 'white',
+      padding: 5,
+      borderRadius: 13,
     };
-    const iconStyleFaill = {
-      fontSize: 56,
-      color: EStyleSheet.value('$gray'),
-    };
-    const pageLayout = {
-      padding: 50,
-      flexDirection: 'column',
-    };
-    const line = {
-      flexDirection: 'column',
-      borderLeftColor: 'black',
-      borderWidth: 1,
-    };
+    const descriptionStyle = {color: 'gray'};
+    const timeContainerStyle = {minWidth: 52, marginTop: -5};
     return (
-      <Container>
-        <Timeline data={jobStatus} />
-        <View style={pageLayout}>
-          {/* <Icon name="check-circle" style={iconStyleSuccess} />
-          <View style={line} />
-          <Icon name="check-circle" style={iconStyleSuccess} />
-          <Icon name="check-circle" style={iconStyleFaill} /> */}
-        </View>
-      </Container>
+      <Timeline
+        circleSize={20}
+        innerCircle="dot"
+        circleColor="rgb(45,156,219)"
+        lineColor="rgb(45,156,219)"
+        timeContainerStyle={timeContainerStyle}
+        timeStyle={timeStyle}
+        descriptionStyle={descriptionStyle}
+        options={{
+          style: {paddingTop: 50, padding: 10},
+        }}
+        data={this.data}
+      />
     );
   }
 }

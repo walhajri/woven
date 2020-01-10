@@ -7,11 +7,8 @@ import auth from '@react-native-firebase/auth';
 
 class Register extends Component {
   Register = () => {
-    console.log('register');
-    console.log(this.state.email);
-    console.log(this.state.password);
     this.setState({authentication: true});
-    const authPromis = auth().createUserWithEmailAndPassword(
+    auth().createUserWithEmailAndPassword(
       this.state.email,
       this.state.password,
     );
