@@ -30,7 +30,8 @@ async function getPositions(post) {
     .then(snapshot => {
       snapshot.docs.forEach(doc => {
         let data = doc.data();
-        //TODO: find a better maybe hashmap will do it
+        data.position = doc.id;
+        //TODO: find a better maybe hashmap will do it -\(*.*)/-
         if (post[doc.id] !== undefined) {
           appliedJobs.push(data);
         }

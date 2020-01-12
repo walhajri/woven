@@ -4,16 +4,32 @@ import {Container} from '../components/Container';
 import {Divider} from '../components/Shapes/Divider';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 class JobDetails extends Component {
   handlePress = () => {
+    let db = firestore();
     const {navigate} = this.props.navigation;
     if (auth().currentUser) {
+      // TODO: make sure not to add duplicate
+      db.collection('appliedJobs').add({
+        postion: this.state.position.position,
+        seekerID: auth().currentUser.uid,
+        businessID: 'ss',
+        status: 'review',
+      });
       navigate('AppliedJobs', {job: this.render.param});
     } else {
       navigate('Login');
     }
   };
+  state = {
+    position: {},
+  };
+  componentDidMount() {
+    const param = this.props.navigation.getParam('item');
+    this.setState({position: param});
+  }
   render() {
     const pagelayout = {margin: 20};
     const title = {
@@ -21,7 +37,7 @@ class JobDetails extends Component {
       fontSize: 20,
       fontWeight: 'bold',
     };
-    const param = this.props.navigation.getParam('item');
+    const param = this.state.position;
     return (
       <Container>
         <Text style={title}>Job Title:</Text>

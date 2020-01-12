@@ -8,6 +8,7 @@ async function getPositions() {
     .then(snapshot => {
       snapshot.docs.forEach(doc => {
         let data = doc.data();
+        data.position = doc.id;
         postions.push(data);
       });
     });
