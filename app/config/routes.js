@@ -7,13 +7,24 @@ import PreRegister from '../screens/PreRegister';
 import Register from '../screens/Register';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 const MainNavigator = createStackNavigator(
   {
     Home: {
-      screen: Home,
-      navigationOptions: () => ({
-        title: 'Home',
+      screen: createBottomTabNavigator({
+        Home: {
+          screen: Home,
+          navigationOptions: () => ({
+            title: 'Home',
+          }),
+        },
+        Login: {
+          screen: Login,
+          navigationOptions: () => ({
+            title: 'Login',
+          }),
+        },
       }),
     },
     Login: {

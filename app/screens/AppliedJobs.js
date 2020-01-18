@@ -10,7 +10,7 @@ class AppliedJob extends Component {
     const {navigate} = this.props.navigation;
     console.log('******** status **********', this.state.appliedJobStatus);
     console.log('******** job *************', item);
-    navigate('CandidateStatus', {item: item});
+    navigate('CandidateStatus', {status: this.state.appliedJobStatus});
   };
 
   async componentDidMount() {

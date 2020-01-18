@@ -8,10 +8,6 @@ import Timeline from 'react-native-timeline-flatlist';
 
 Icon.loadFont();
 class CandidateStatus extends Component {
-  handlePress = item => {
-    const {navigate} = this.props.navigation;
-    navigate('JobDetails', {item: item});
-  };
   constructor() {
     super();
     this.data = [

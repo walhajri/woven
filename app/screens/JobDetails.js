@@ -11,7 +11,7 @@ class JobDetails extends Component {
     let db = firestore();
     const {navigate} = this.props.navigation;
     if (auth().currentUser) {
-      // TODO: make sure not to add duplicate
+      // TODO: make sure not to add the same job twice
       db.collection('appliedJobs').add({
         postion: this.state.position.position,
         seekerID: auth().currentUser.uid,
