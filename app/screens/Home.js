@@ -6,8 +6,7 @@ import {Container} from '../components/Container';
 
 class Home extends Component {
   handlePress = item => {
-    const {navigate} = this.props.navigation;
-    navigate('JobDetails', {item: item});
+    this.props.navigation.navigate('JobDetails', {item: item});
   };
 
   state = {

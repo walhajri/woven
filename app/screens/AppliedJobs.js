@@ -8,8 +8,6 @@ import {Container} from '../components/Container';
 class AppliedJob extends Component {
   handlePress = item => {
     const {navigate} = this.props.navigation;
-    console.log('******** status **********', this.state.appliedJobStatus);
-    console.log('******** job *************', item);
     navigate('CandidateStatus', {status: this.state.appliedJobStatus});
   };
 

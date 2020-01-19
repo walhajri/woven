@@ -1,73 +1,43 @@
 import Home from '../screens/Home';
-import JobDetails from '../screens/JobDetails';
-import Login from '../screens/Login';
 import AppliedJobs from '../screens/AppliedJobs';
-import CandidateStatus from '../screens/CandidateStatus';
-import PreRegister from '../screens/PreRegister';
-import Register from '../screens/Register';
-import {createStackNavigator} from 'react-navigation-stack';
-import {createAppContainer} from 'react-navigation';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
+import UserStack from './userStack';
 
-const MainNavigator = createStackNavigator(
-  {
-    Home: {
-      screen: createBottomTabNavigator({
-        Home: {
-          screen: Home,
-          navigationOptions: () => ({
-            title: 'Home',
-          }),
-        },
-        Login: {
-          screen: Login,
-          navigationOptions: () => ({
-            title: 'Login',
-          }),
-        },
-      }),
-    },
-    Login: {
-      screen: Login,
-      navigationOptions: () => ({
-        title: 'Login',
-      }),
-    },
-    PreRegister: {
-      screen: PreRegister,
-      navigationOptions: () => ({
-        title: 'Register',
-      }),
-    },
-    Register: {
-      screen: Register,
-      navigationOptions: () => ({
-        title: 'Register',
-      }),
-    },
-    CandidateStatus: {
-      screen: CandidateStatus,
-      navigationOptions: () => ({
-        title: 'Job Status',
-      }),
-    },
-    AppliedJobs: {
-      screen: AppliedJobs,
-      navigationOptions: () => ({
-        title: 'Applied Jobs',
-      }),
-    },
-    JobDetails: {
-      screen: JobDetails,
-      navigationOptions: () => ({
-        title: 'Job Discription',
-      }),
-    },
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
+import AuthStack from './authStack';
+
+const TabStack = createBottomTabNavigator({
+  AppliedJobs: {
+    screen: AppliedJobs,
+    navigationOptions: () => ({
+      title: 'Applied Jobs',
+    }),
   },
-  {
-    headerMode: 'screen',
+  Home: {
+    screen: UserStack,
+    navigationOptions: () => ({
+      title: 'Home',
+    }),
   },
+  Profile: {
+    screen: AuthStack,
+    navigationOptions: () => ({
+      title: 'Profile',
+    }),
+  },
+});
+
+const App = createAppContainer(
+  createSwitchNavigator(
+    {
+      Tab: TabStack,
+      App: UserStack,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'Tab',
+    },
+  ),
 );
-const App = createAppContainer(MainNavigator);
 
 export default App;
