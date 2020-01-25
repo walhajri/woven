@@ -4,6 +4,7 @@ import offers from '../data/offers';
 import {ListItem, Separator} from '../components/List';
 import {Container} from '../components/Container';
 
+//TODO: remove the login back button
 class Home extends Component {
   handlePress = item => {
     this.props.navigation.navigate('JobDetails', {item: item});

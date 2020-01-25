@@ -31,11 +31,11 @@ const App = createAppContainer(
   createSwitchNavigator(
     {
       Tab: TabStack,
-      App: UserStack,
       Auth: AuthStack,
+      App: UserStack,
     },
     {
-      initialRouteName: 'Tab',
+      initialRouteName: 'App',
     },
   ),
 );

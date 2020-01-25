@@ -24,7 +24,11 @@ class Login extends Component {
   }
   register = () => {
     const {navigate} = this.props.navigation;
-    navigate('Register');
+    navigate('PreRegister');
+  };
+  home = () => {
+    const {navigate} = this.props.navigation;
+    navigate('Home');
   };
   state = {
     email: '',
@@ -48,7 +52,10 @@ class Login extends Component {
     const clearButton = {
       alignContent: 'flex-end',
     };
-
+    if (auth().currentUser) {
+      const {navigate} = this.props.navigation;
+      navigate('Home');
+    }
     return (
       <Container>
         <View style={layout}>
@@ -79,6 +86,14 @@ class Login extends Component {
               onPress={() => this.register()}
             />
           </View>
+          <View />
+          <View />
+          <Button
+            style={clearButton}
+            type="clear"
+            title="Skip"
+            onPress={() => this.home()}
+          />
         </View>
       </Container>
     );

@@ -21,7 +21,7 @@ const AuthStack = createStackNavigator(
     PreRegister: {
       screen: PreRegister,
       navigationOptions: () => ({
-        title: 'Register',
+        title: 'PreRegister',
       }),
     },
     Register: {

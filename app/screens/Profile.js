@@ -22,7 +22,7 @@ class Profile extends Component {
     } else {
       return (
         <Container>
-          <Text>Profile page</Text>
+          <Text>Your Amazing Profile page {auth().currentUser.email}</Text>
           <Button
             title="Logout"
             color={EStyleSheet.value('$primaryColor')}

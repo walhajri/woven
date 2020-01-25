@@ -3,9 +3,17 @@ import JobDetails from '../screens/JobDetails';
 import AppliedJobs from '../screens/AppliedJobs';
 import CandidateStatus from '../screens/CandidateStatus';
 import {createStackNavigator} from 'react-navigation-stack';
+import Login from '../screens/Login';
+import {Button} from 'react-native';
 
 const UserStack = createStackNavigator(
   {
+    Login: {
+      screen: Login,
+      navigationOptions: () => ({
+        title: 'Login',
+      }),
+    },
     Home: {
       screen: Home,
       navigationOptions: () => ({
