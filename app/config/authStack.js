@@ -6,16 +6,16 @@ import Register from '../screens/Register';
 
 const AuthStack = createStackNavigator(
   {
-    Profile: {
-      screen: Profile,
-      navigationOptions: () => ({
-        title: 'Profile',
-      }),
-    },
     Login: {
       screen: Login,
       navigationOptions: () => ({
         title: 'Login',
+      }),
+    },
+    Profile: {
+      screen: Profile,
+      navigationOptions: () => ({
+        title: 'Profile',
       }),
     },
     PreRegister: {

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Text, FlatList, Button, View} from 'react-native';
+import {Text, FlatList, Button, View, Image} from 'react-native';
 import {Container} from '../components/Container';
 import {Divider} from '../components/Shapes/Divider';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import {ScrollView} from 'react-native-gesture-handler';
+import assetsObject from '../assets/assets';
 
 class JobDetails extends Component {
   handlePress = () => {
@@ -39,33 +39,40 @@ class JobDetails extends Component {
       fontSize: 20,
       fontWeight: 'bold',
     };
+    const mainText = {fontWeight: 'bold', fontSize: 18, margin: 10};
+    const subText = {
+      fontStyle: 'italic',
+      fontSize: 14,
+      marginLeft: 10,
+      marginRight: 10,
+    };
+    const mainDetail = {
+      flexDirection: 'row',
+    };
     const param = this.state.position;
     return (
       <Container>
-        <ScrollView>
-          <Text style={title}>Job Title:</Text>
-          <Text style={pagelayout}>{param.jobTile}</Text>
-          <Divider />
-          <Text style={title}>Job Description:</Text>
-          <Text style={pagelayout}>{param.jobDescription}</Text>
-          <Divider />
-          <Text style={title}>Total Payment:</Text>
-          <Text style={pagelayout}>{param.jobTotalSalary}</Text>
-          <Divider />
-          <Text style={title}>Skills:</Text>
-          <FlatList
-            style={pagelayout}
-            data={param.jobSkill}
-            renderItem={({item}) => <Text style={pagelayout}>{item}</Text>}
-            keyExtractor={item => item}
-          />
-          <Button
-            style={pagelayout}
-            title="Apply"
-            color={EStyleSheet.value('$primaryColor')}
-            onPress={() => this.handlePress()}
-          />
-        </ScrollView>
+        <View style={mainDetail}>
+          <View>
+            <Image
+              source={param.img ? {uri: param.img} : assetsObject.companyIcon}
+            />
+          </View>
+          <View>
+            <Text style={mainText}>{param.jobTile}</Text>
+            <Text style={subText}>{param.jobLocation}</Text>
+            <Text style={subText}>{param.jobTotalSalary + ' SR'}</Text>
+          </View>
+        </View>
+        <Button
+          style={pagelayout}
+          title="Apply"
+          color={EStyleSheet.value('$primaryColor')}
+          onPress={() => this.handlePress()}
+        />
+        <Divider />
+        <Text style={title}>Job Description:</Text>
+        <Text style={pagelayout}>{param.jobDescription}</Text>
       </Container>
     );
   }

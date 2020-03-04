@@ -35,7 +35,7 @@ const App = createAppContainer(
       App: UserStack,
     },
     {
-      initialRouteName: 'App',
+      initialRouteName: 'Auth',
     },
   ),
 );

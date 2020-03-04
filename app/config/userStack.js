@@ -8,12 +8,6 @@ import {Button} from 'react-native';
 
 const UserStack = createStackNavigator(
   {
-    Login: {
-      screen: Login,
-      navigationOptions: () => ({
-        title: 'Login',
-      }),
-    },
     Home: {
       screen: Home,
       navigationOptions: () => ({

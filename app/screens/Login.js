@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Input, Button} from 'react-native-elements';
 import {Container} from '../components/Container';
@@ -13,7 +13,7 @@ class Login extends Component {
       const {navigate} = this.props.navigation;
       navigate('AppliedJobs', {});
     } else {
-      console.log('username or password are wrong');
+      alert('username or password are wrong');
     }
   };
   async signin() {
@@ -28,7 +28,7 @@ class Login extends Component {
   };
   home = () => {
     const {navigate} = this.props.navigation;
-    navigate('Home');
+    navigate('Tab');
   };
   state = {
     email: '',
@@ -37,13 +37,11 @@ class Login extends Component {
   };
   render() {
     const layout = {
-      marginTop: 200,
+      marginTop: 50,
       margin: 10,
     };
     const submitButton = {
       marginTop: 10,
-      marginRight: 50,
-      marginLeft: 50,
     };
     const row = {
       flexDirection: 'row',
@@ -52,12 +50,29 @@ class Login extends Component {
     const clearButton = {
       alignContent: 'flex-end',
     };
+    const logo = {
+      marginTop: 50,
+      width: 150,
+      height: 150,
+      alignContent: 'center',
+    };
+    const imageLayout = {
+      justifyContent: 'center',
+      alignItems: 'center',
+    };
     if (auth().currentUser) {
       const {navigate} = this.props.navigation;
       navigate('Home');
     }
     return (
       <Container>
+        <View style={imageLayout}>
+          <Image
+            source={require('../data/images/logo.png')}
+            style={logo}
+            resizeMode="contain"
+          />
+        </View>
         <View style={layout}>
           <Input
             placeholder="example@google.com"
