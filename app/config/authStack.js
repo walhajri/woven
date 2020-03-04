@@ -12,12 +12,6 @@ const AuthStack = createStackNavigator(
         title: 'Login',
       }),
     },
-    Profile: {
-      screen: Profile,
-      navigationOptions: () => ({
-        title: 'Profile',
-      }),
-    },
     PreRegister: {
       screen: PreRegister,
       navigationOptions: () => ({
