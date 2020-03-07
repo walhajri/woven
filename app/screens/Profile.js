@@ -27,9 +27,10 @@ class Profile extends Component {
             title="Logout"
             color={EStyleSheet.value('$primaryColor')}
             onPress={() => {
-              auth().signOut();
+              auth()
+                .signOut()
+                .then(this.props.navigation.navigate('Tab'));
               console.log(auth().currentUser);
-              this.props.navigation.navigate('Home');
             }}
           />
         </Container>
