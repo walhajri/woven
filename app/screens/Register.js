@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, Text, ActivityIndicator} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import {Container} from '../components/Container';
-import EStyleSheet from 'react-native-extended-stylesheet';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
@@ -11,7 +10,7 @@ class Register extends Component {
     this.setState({error: '', loading: true});
     this.renderCurrentState();
     let db = firestore();
-    let user = auth()
+    auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(cred => {
         return db
@@ -22,6 +21,7 @@ class Register extends Component {
           });
       })
       .then(() => {
+        this.onLoginSuccess();
         const {navigate} = this.props.navigation;
         navigate('Tab');
       })
@@ -44,11 +44,6 @@ class Register extends Component {
             );
         }
       });
-
-    console.log(user);
-    console.log(this.state.email);
-    console.log(this.state.password);
-    console.log(this.state.accountType);
   };
   onLoginSuccess() {
     this.setState({

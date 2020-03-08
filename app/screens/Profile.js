@@ -1,37 +1,82 @@
 import React, {Component} from 'react';
-import {Text, ActivityIndicator, Button} from 'react-native';
+import {Text, ActivityIndicator, Button, View} from 'react-native';
 import {Container} from '../components/Container';
 import auth from '@react-native-firebase/auth';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 class Profile extends Component {
+  logout = () => {
+    this.setState({loading: true});
+    this.render();
+    auth()
+      .signOut()
+      .then(() => {
+        this.onLoginSuccess();
+        this.props.navigation.navigate('Tab');
+      });
+  };
+  login = () => {
+    const {navigate} = this.props.navigation;
+    navigate('Login');
+  };
+  onLoginSuccess() {
+    this.setState({
+      loading: false,
+    });
+  }
+  state = {
+    loading: false,
+  };
   //check if the user is authenticated and then take him to the right screen
   render() {
-    if (!auth().currentUser) {
-      this.props.navigation.navigate('Login');
+    const loader = {
+      flex: 1,
+      justifyContent: 'center',
+      padding: 10,
+      marginTop: 90,
+    };
+    const submitButton = {
+      marginTop: 10,
+      marginRight: 50,
+      marginLeft: 50,
+    };
+    const textStyle = {
+      marginTop: 80,
+      textAlign: 'center',
+      fontWeight: 'bold',
+      fontSize: 18,
+    };
+    if (this.state.loading) {
       return (
         <Container>
-          <Text>You are not logedin</Text>
+          <View>
+            <ActivityIndicator size={'large'} style={loader} />
+          </View>
+        </Container>
+      );
+    }
+    if (!auth().currentUser) {
+      return (
+        <Container>
+          <Text style={textStyle}>You are not logedin</Text>
           <Button
+            style={submitButton}
             title="Login"
-            color={EStyleSheet.value('$primaryColor')}
-            onPress={() => this.props.navigation.navigate('Login')}
+            onPress={() => this.login()}
           />
         </Container>
       );
     } else {
       return (
         <Container>
-          <Text>Your Amazing Profile page {auth().currentUser.email}</Text>
+          <Text style={textStyle}>
+            Your Amazing Profile page {auth().currentUser.email}
+          </Text>
           <Button
             title="Logout"
             color={EStyleSheet.value('$primaryColor')}
-            onPress={() => {
-              auth()
-                .signOut()
-                .then(this.props.navigation.navigate('Tab'));
-              console.log(auth().currentUser);
-            }}
+            onPress={() => this.logout()}
+            style={submitButton}
           />
         </Container>
       );
