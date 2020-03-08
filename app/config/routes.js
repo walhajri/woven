@@ -6,6 +6,7 @@ import auth from '@react-native-firebase/auth';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import AuthStack from './authStack';
+import BusinessStack from './businessStack';
 
 const TabStack = createBottomTabNavigator({
   AppliedJobs: {
@@ -33,10 +34,11 @@ const App = createAppContainer(
     {
       Tab: TabStack,
       Auth: AuthStack,
-      App: UserStack,
+      User: UserStack,
+      Business: BusinessStack,
     },
     {
-      initialRouteName: 'Auth',
+      initialRouteName: 'Business',
     },
   ),
 );
