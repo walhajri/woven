@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Image} from 'react-native';
+import {View, Image, ActivityIndicator, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Input, Button} from 'react-native-elements';
 import {Container} from '../components/Container';
@@ -7,20 +7,49 @@ import auth from '@react-native-firebase/auth';
 
 Icon.loadFont();
 class Login extends Component {
-  handlePress = () => {
-    this.signin();
-    if (auth().currentUser) {
-      const {navigate} = this.props.navigation;
-      navigate('AppliedJobs', {});
-    } else {
-      alert('username or password are wrong');
-    }
-  };
-  async signin() {
-    await auth().signInWithEmailAndPassword(
-      this.state.email,
-      this.state.password,
-    );
+  signin() {
+    this.setState({error: '', loading: true});
+    this.render();
+    auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        this.onLoginSuccess();
+        const {navigate} = this.props.navigation;
+        navigate('Tab');
+      })
+      .catch(error => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        switch (errorCode) {
+          case 'auth/user-disabled':
+            this.onLoginFailure.bind(this)('Your account has been disabled');
+            break;
+          case 'auth/invalid-email':
+            this.onLoginFailure.bind(this)('This email is not vaild');
+            break;
+          case 'auth/user-not-found':
+            this.onLoginFailure.bind(this)('This email is not registered');
+            break;
+          case 'auth/wrong-password':
+            this.onLoginFailure.bind(this)('Wrong Password');
+            break;
+          default:
+            this.onLoginFailure.bind(this)(
+              'Well something went wrong contact us' + errorMessage,
+            );
+        }
+      });
+  }
+  onLoginSuccess() {
+    this.setState({
+      email: '',
+      password: '',
+      error: '',
+      loading: false,
+    });
+  }
+  onLoginFailure(errorMessage) {
+    this.setState({error: errorMessage, loading: false});
   }
   register = () => {
     const {navigate} = this.props.navigation;
@@ -34,6 +63,8 @@ class Login extends Component {
     email: '',
     password: '',
     authentication: false,
+    loading: false,
+    error: '',
   };
   render() {
     const layout = {
@@ -60,6 +91,23 @@ class Login extends Component {
       justifyContent: 'center',
       alignItems: 'center',
     };
+    const loader = {
+      flex: 1,
+      justifyContent: 'center',
+      padding: 10,
+    };
+    const errorTextStyle = {
+      fontSize: 18,
+      alignSelf: 'center',
+      color: 'red',
+    };
+    if (this.state.loading) {
+      return (
+        <View>
+          <ActivityIndicator size={'large'} style={loader} />
+        </View>
+      );
+    }
     if (auth().currentUser) {
       const {navigate} = this.props.navigation;
       navigate('Home');
@@ -90,7 +138,7 @@ class Login extends Component {
           <Button
             style={submitButton}
             title="Login"
-            onPress={() => this.handlePress()}
+            onPress={() => this.signin()}
           />
           <View style={row}>
             <Button style={clearButton} type="clear" title="Forgot Password?" />
@@ -110,6 +158,7 @@ class Login extends Component {
             onPress={() => this.home()}
           />
         </View>
+        <Text style={errorTextStyle}>{this.state.error}</Text>
       </Container>
     );
   }
