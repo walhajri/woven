@@ -3,11 +3,16 @@ import JobDetails from '../screens/JobDetails';
 import AppliedJobs from '../screens/AppliedJobs';
 import CandidateStatus from '../screens/CandidateStatus';
 import {createStackNavigator} from 'react-navigation-stack';
-import Login from '../screens/Login';
-import {Button} from 'react-native';
+import Splash from '../screens/Splash';
 
 const UserStack = createStackNavigator(
   {
+    // Splash: {
+    //   screen: Splash,
+    //   navigationOptions: () => ({
+    //     title: 'Splash',
+    //   }),
+    // },
     Home: {
       screen: Home,
       navigationOptions: () => ({

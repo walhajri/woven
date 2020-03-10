@@ -3,11 +3,10 @@ import {FlatList, View} from 'react-native';
 import getPositions from '../data/businessJobs';
 import {ListItem, Separator} from '../components/List';
 import {Container} from '../components/Container';
+import auth from '@react-native-firebase/auth';
 
-//TODO: remove the login back button
-class Home extends Component {
+class HomeBusiness extends Component {
   handlePress = item => {
-    // this.props.navigation.navigate('JobDetails', {item: item});
     console.log('hi');
   };
 
@@ -47,4 +46,4 @@ class Home extends Component {
     );
   }
 }
-export default Home;
+export default HomeBusiness;

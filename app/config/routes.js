@@ -1,46 +1,32 @@
-import Home from '../screens/Home';
-import AppliedJobs from '../screens/AppliedJobs';
 import UserStack from './userStack';
-import Profile from '../screens/Profile';
-import auth from '@react-native-firebase/auth';
+import UserTabStack from './userTabStack';
+import BusinessTabStack from './businessTabStack';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
 import AuthStack from './authStack';
 import BusinessStack from './businessStack';
 
-const TabStack = createBottomTabNavigator({
-  AppliedJobs: {
-    screen: AppliedJobs,
-    navigationOptions: () => ({
-      title: 'Applied Jobs',
-    }),
-  },
-  Home: {
-    screen: UserStack,
-    navigationOptions: () => ({
-      title: 'Home',
-    }),
-  },
-  Profile: {
-    screen: Profile,
-    navigationOptions: () => ({
-      title: 'Profile',
-    }),
-  },
-});
-
-const App = createAppContainer(
+const User = createAppContainer(
   createSwitchNavigator(
     {
-      Tab: TabStack,
-      Auth: AuthStack,
+      UserTab: UserTabStack,
       User: UserStack,
-      Business: BusinessStack,
+      Auth: AuthStack,
     },
     {
-      initialRouteName: 'Business',
+      initialRouteName: 'UserTab',
     },
   ),
 );
-
-export default App;
+const Business = createAppContainer(
+  createSwitchNavigator(
+    {
+      BusinessTab: BusinessTabStack,
+      Business: BusinessStack,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'BusinessTab',
+    },
+  ),
+);
+export {User, Business};
