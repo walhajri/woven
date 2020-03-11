@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {View, Image, ActivityIndicator, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Input, Button} from 'react-native-elements';
-import {Container} from '../components/Container';
+import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
+import assetsObject from '../../assets/assets';
 
 Icon.loadFont();
 class Login extends Component {
@@ -115,11 +116,7 @@ class Login extends Component {
     return (
       <Container>
         <View style={imageLayout}>
-          <Image
-            source={require('../data/images/logo.png')}
-            style={logo}
-            resizeMode="contain"
-          />
+          <Image source={assetsObject.logo} style={logo} resizeMode="contain" />
         </View>
         <View style={layout}>
           <Input

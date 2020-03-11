@@ -1,11 +1,21 @@
 import React, {Component} from 'react';
 import {FlatList, View} from 'react-native';
-import getPositions from '../data/businessJobs';
-import {ListItem, Separator} from '../components/List';
-import {Container} from '../components/Container';
+import getPositions from '../../data/businessJobs';
+import {ListItem, Separator} from '../../components/List';
+import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
+import {Button, Icon} from 'react-native-elements';
 
 class HomeBusiness extends Component {
+  static navigationOptions = {
+    headerRight: (
+      <Button
+        onPress={() => alert('This is a button!')}
+        icon={<Icon name="arrow-right" size={15} color="white" />}
+        color="#fff"
+      />
+    ),
+  };
   handlePress = item => {
     console.log('hi');
   };

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {FlatList, View, Text} from 'react-native';
-import appliedJobs from '../data/appliedJobs';
-import appliedJobStatus from '../data/appliedJobStatus';
-import {ListItem, Separator} from '../components/List';
-import {Container} from '../components/Container';
+import appliedJobs from '../../data/appliedJobs';
+import appliedJobStatus from '../../data/appliedJobStatus';
+import {ListItem, Separator} from '../../components/List';
+import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import {Button} from 'react-native-elements';
 

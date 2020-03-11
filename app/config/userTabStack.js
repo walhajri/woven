@@ -1,6 +1,6 @@
 import UserStack from './userStack';
-import AppliedJobs from '../screens/AppliedJobs';
-import Profile from '../screens/Profile';
+import AppliedJobs from '../screens/User/AppliedJobs';
+import Profile from '../screens/Auth/Profile';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 const UserTabStack = createBottomTabNavigator({

@@ -1,7 +1,6 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import Splash from './screens/Splash';
-import {User, Business} from './config/routes';
+import {MainStack} from './config/routes';
 
 EStyleSheet.build({
   $primaryColor: '#00bcd4',
@@ -14,4 +13,4 @@ EStyleSheet.build({
   $white: '#ffff',
 });
 
-export default () => <User />;
+export default () => <MainStack />;

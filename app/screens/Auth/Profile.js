@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, ActivityIndicator, Button, View} from 'react-native';
-import {Container} from '../components/Container';
+import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -12,7 +12,7 @@ class Profile extends Component {
       .signOut()
       .then(() => {
         this.onLoginSuccess();
-        this.props.navigation.navigate('Tab');
+        this.props.navigation.navigate('UserTabStack');
       });
   };
   login = () => {

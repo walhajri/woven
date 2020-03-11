@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, ActivityIndicator} from 'react-native';
 import {Button, Input} from 'react-native-elements';
-import {Container} from '../components/Container';
+import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 

@@ -4,6 +4,20 @@ import BusinessTabStack from './businessTabStack';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import AuthStack from './authStack';
 import BusinessStack from './businessStack';
+import MainScreen from '../screens/MainScreen';
+
+const MainStack = createAppContainer(
+  createSwitchNavigator(
+    {
+      MainScreen: MainScreen,
+      UserPath: UserTabStack,
+      BusinessPath: BusinessTabStack,
+    },
+    {
+      initialRouteName: 'MainScreen',
+    },
+  ),
+);
 
 const User = createAppContainer(
   createSwitchNavigator(
@@ -29,4 +43,4 @@ const Business = createAppContainer(
     },
   ),
 );
-export {User, Business};
+export {MainStack, User, Business};

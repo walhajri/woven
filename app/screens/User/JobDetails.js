@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Text, FlatList, Button, View, Image} from 'react-native';
-import {Container} from '../components/Container';
-import {Divider} from '../components/Shapes/Divider';
+import {Container} from '../../components/Container';
+import {Divider} from '../../components/Shapes/Divider';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import assetsObject from '../assets/assets';
+import assetsObject from '../../assets/assets';
 
 class JobDetails extends Component {
   handlePress = () => {

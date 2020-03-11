@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Container} from '../components/Container';
+import {Container} from '../../components/Container';
 import {View} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import jobStatus from '../data/jobStatus';
+import jobStatus from '../../data/jobStatus';
 import Timeline from 'react-native-timeline-flatlist';
 
 Icon.loadFont();

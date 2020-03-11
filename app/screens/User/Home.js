@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {FlatList, View} from 'react-native';
-import offers from '../data/offers';
-import {ListItem, Separator} from '../components/List';
-import {Container} from '../components/Container';
+import offers from '../../data/offers';
+import {ListItem, Separator} from '../../components/List';
+import {Container} from '../../components/Container';
 
 //TODO: remove the login back button
 class Home extends Component {
