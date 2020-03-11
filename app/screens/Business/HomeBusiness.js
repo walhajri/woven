@@ -4,14 +4,22 @@ import getPositions from '../../data/businessJobs';
 import {ListItem, Separator} from '../../components/List';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
-import {Button, Icon} from 'react-native-elements';
+import {Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
+Icon.loadFont();
 class HomeBusiness extends Component {
   static navigationOptions = {
     headerRight: (
       <Button
+        style={{
+          marginRight: 10,
+          fontWeight: 'bold',
+          color: ()=>EStyleSheet.value('$primaryColor'),
+        }}
         onPress={() => alert('This is a button!')}
-        icon={<Icon name="arrow-right" size={15} color="white" />}
+        icon={<Icon type="material" name="plus" size={20} color="white" />}
         color="#fff"
       />
     ),
@@ -32,6 +40,11 @@ class HomeBusiness extends Component {
   }
 
   render() {
+    const styles = EStyleSheet.create({
+      text: {
+        color: '$textColor',
+      },
+    });
     return (
       <Container>
         <View>
@@ -56,4 +69,5 @@ class HomeBusiness extends Component {
     );
   }
 }
+
 export default HomeBusiness;

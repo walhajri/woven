@@ -30,16 +30,15 @@ class PreRegister extends Component {
       marginRight: 40,
       marginLeft: 40,
       borderRadius: 20,
-      color: EStyleSheet.value('$primaryColor'),
+      color: styles.text,
     };
     return (
       <Container>
         <View style={layout}>
           <Text style={titleText}>Select Your Account</Text>
           <Button
-            style={submitButton}
+            style={styles.text}
             title="I want to work"
-            type="outline"
             onPress={() => this.RegisterIndividual()}
           />
           <Button
@@ -53,5 +52,10 @@ class PreRegister extends Component {
     );
   }
 }
-
+const styles = EStyleSheet.create({
+  $textColor: '#0275d8',
+  text: {
+    color: '$textColor', // global variable $textColor
+  },
+});
 export default PreRegister;

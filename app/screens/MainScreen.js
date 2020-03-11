@@ -7,18 +7,20 @@ import firestore from '@react-native-firebase/firestore';
 class MainScreen extends Component {
   render() {
     let db = firestore();
-    console.log(auth().currentUser);
     if (auth().currentUser) {
       db.collection('users')
         .doc(auth().currentUser.uid)
         .get()
         .then(doc => {
-          let Business = 'BusinessHome';
-          let User = 'Home';
+          let Business = 'BusinessPath';
+          let User = 'UserPath';
           const Stack = doc.data().accountType === 'company' ? Business : User;
           const {navigate} = this.props.navigation;
           navigate(Stack);
         });
+    } else {
+      const {navigate} = this.props.navigation;
+      navigate('Auth');
     }
     const logo = {
       marginTop: 150,

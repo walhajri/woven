@@ -17,7 +17,7 @@ class Profile extends Component {
   };
   login = () => {
     const {navigate} = this.props.navigation;
-    navigate('Login');
+    navigate('Profile');
   };
   onLoginSuccess() {
     this.setState({
@@ -74,7 +74,6 @@ class Profile extends Component {
           </Text>
           <Button
             title="Logout"
-            color={EStyleSheet.value('$primaryColor')}
             onPress={() => this.logout()}
             style={submitButton}
           />

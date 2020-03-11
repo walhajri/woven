@@ -16,7 +16,7 @@ class Login extends Component {
       .then(() => {
         this.onLoginSuccess();
         const {navigate} = this.props.navigation;
-        navigate('Tab');
+        navigate('AppliedJobs');
       })
       .catch(error => {
         let errorCode = error.code;
@@ -58,7 +58,7 @@ class Login extends Component {
   };
   home = () => {
     const {navigate} = this.props.navigation;
-    navigate('Tab');
+    navigate('Visitor');
   };
   state = {
     email: '',
@@ -109,10 +109,10 @@ class Login extends Component {
         </View>
       );
     }
-    if (auth().currentUser) {
-      const {navigate} = this.props.navigation;
-      navigate('Home');
-    }
+    // if (auth().currentUser) {
+    //   const {navigate} = this.props.navigation;
+    //   navigate('Home');
+    // }
     return (
       <Container>
         <View style={imageLayout}>

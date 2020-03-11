@@ -1,11 +1,18 @@
 import Home from '../screens/User/Home';
 import JobDetails from '../screens/User/JobDetails';
-import AppliedJobs from '../screens/User/AppliedJobs';
+import Profile from '../screens/Auth/Profile';
 import CandidateStatus from '../screens/User/CandidateStatus';
 import {createStackNavigator} from 'react-navigation-stack';
+import AuthStack from './authStack';
 
 const UserStack = createStackNavigator(
   {
+    Profile: {
+      screen: Profile,
+      navigationOptions: () => ({
+        title: 'Profile',
+      }),
+    },
     Home: {
       screen: Home,
       navigationOptions: () => ({
@@ -16,12 +23,6 @@ const UserStack = createStackNavigator(
       screen: CandidateStatus,
       navigationOptions: () => ({
         title: 'Job Status',
-      }),
-    },
-    AppliedJobs: {
-      screen: AppliedJobs,
-      navigationOptions: () => ({
-        title: 'Applied Jobs',
       }),
     },
     JobDetails: {

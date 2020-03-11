@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, FlatList, Button, View, Image} from 'react-native';
+import {Text, Button, View, Image} from 'react-native';
 import {Container} from '../../components/Container';
 import {Divider} from '../../components/Shapes/Divider';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -21,7 +21,7 @@ class JobDetails extends Component {
       });
       navigate('AppliedJobs', {job: this.render.param});
     } else {
-      navigate('Login');
+      navigate('Auth');
     }
   };
   state = {
@@ -32,50 +32,52 @@ class JobDetails extends Component {
     this.setState({position: param});
   }
   render() {
-    const pagelayout = {margin: 20};
-    const padding = {color: '#f6a'};
-    const title = {
-      margin: 10,
-      fontSize: 20,
-      fontWeight: 'bold',
-    };
-    const mainText = {fontWeight: 'bold', fontSize: 18, margin: 10};
-    const subText = {
-      fontStyle: 'italic',
-      fontSize: 14,
-      marginLeft: 10,
-      marginRight: 10,
-    };
-    const mainDetail = {
-      flexDirection: 'row',
-    };
     const param = this.state.position;
     return (
       <Container>
-        <View style={mainDetail}>
+        <View style={styles.mainDetail}>
           <View>
             <Image
               source={param.img ? {uri: param.img} : assetsObject.companyIcon}
             />
           </View>
           <View>
-            <Text style={mainText}>{param.jobTile}</Text>
-            <Text style={subText}>{param.jobLocation}</Text>
-            <Text style={subText}>{param.jobTotalSalary + ' SR'}</Text>
+            <Text style={styles.mainText}>{param.jobTile}</Text>
+            <Text style={styles.subText}>{param.jobLocation}</Text>
+            <Text style={styles.subText}>{param.jobTotalSalary + ' SR'}</Text>
           </View>
         </View>
         <Button
-          style={pagelayout}
+          style={styles.pagelayout}
           title="Apply"
-          color={EStyleSheet.value('$primaryColor')}
+          color={styles.row}
           onPress={() => this.handlePress()}
         />
         <Divider />
-        <Text style={title}>Job Description:</Text>
-        <Text style={pagelayout}>{param.jobDescription}</Text>
+        <Text style={styles.title}>Job Description:</Text>
+        <Text style={styles.pagelayout}>{param.jobDescription}</Text>
       </Container>
     );
   }
 }
+
+const styles = EStyleSheet.create({
+  pagelayout: {margin: 20},
+  title: {
+    margin: 10,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  mainText: {fontWeight: 'bold', fontSize: 18, margin: 10},
+  subText: {
+    fontStyle: 'italic',
+    fontSize: 14,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  mainDetail: {
+    flexDirection: 'row',
+  },
+});
 
 export default JobDetails;

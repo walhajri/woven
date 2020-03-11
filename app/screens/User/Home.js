@@ -3,13 +3,32 @@ import {FlatList, View} from 'react-native';
 import offers from '../../data/offers';
 import {ListItem, Separator} from '../../components/List';
 import {Container} from '../../components/Container';
+import {Button} from 'react-native-elements';
 
 //TODO: remove the login back button
 class Home extends Component {
+  static navigationOptions = ({navigation}) => ({
+    headerRight: (
+      <Button
+        style={{
+          marginRight: 10,
+          fontWeight: 'bold',
+          title: 'login',
+        }}
+        onPress={() => {
+          navigation.navigate('Auth');
+        }}
+      />
+    ),
+  });
+
   handlePress = item => {
     this.props.navigation.navigate('JobDetails', {item: item});
   };
 
+  login = () => {
+    this.props.navigation.navigate('login');
+  };
   state = {
     positions: {},
   };
