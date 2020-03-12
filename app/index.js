@@ -1,6 +1,6 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import {MainStack} from './config/routes';
+import MainStack from './config/routes';
 
 EStyleSheet.build({
   $primaryColor: '#00bcd4',

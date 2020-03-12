@@ -1,13 +1,13 @@
 import BusinessStack from './businessStack';
-import AppliedJobs from '../screens/User/AppliedJobs';
 import Profile from '../screens/Auth/Profile';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import EmployeesCalendar from '../screens/Business/EmployeesCalendar';
 
 const BusinessTabStack = createBottomTabNavigator({
-  AppliedJobs: {
-    screen: AppliedJobs,
+  EmployeesCalendar: {
+    screen: EmployeesCalendar,
     navigationOptions: () => ({
-      title: 'Applied Jobs',
+      title: 'Employess Calendar',
     }),
   },
   BusinessHome: {
