@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Input, Button} from 'react-native-elements';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import assetsObject from '../../assets/assets';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
@@ -16,8 +17,7 @@ class Login extends Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         this.onLoginSuccess();
-        const {navigate} = this.props.navigation;
-        navigate('AppliedJobs');
+        this.navigateToRightStack();
       })
       .catch(error => {
         let errorCode = error.code;
@@ -41,6 +41,21 @@ class Login extends Component {
             );
         }
       });
+  }
+  navigateToRightStack() {
+    let db = firestore();
+    if (auth().currentUser) {
+      db.collection('users')
+        .doc(auth().currentUser.uid)
+        .get()
+        .then(doc => {
+          let Business = 'BusinessPath';
+          let User = 'UserPath';
+          const Stack = doc.data().accountType === 'company' ? Business : User;
+          const {navigate} = this.props.navigation;
+          navigate(Stack);
+        });
+    }
   }
   onLoginSuccess() {
     this.setState({

@@ -8,15 +8,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 Icon.loadFont();
-//TODO: remove the login back button
 class Home extends Component {
   static navigationOptions = ({navigation}) => ({
     headerRight: (
+      //TODO: change the color of the button
       <Button
         style={{
           marginRight: 10,
           fontWeight: 'bold',
-          backgroundColor: 'red',
         }}
         icon={<Icon type="material" name="sign-in" size={20} color="white" />}
         onPress={() => {

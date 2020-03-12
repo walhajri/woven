@@ -12,6 +12,7 @@ class Profile extends Component {
       .signOut()
       .then(() => {
         this.onLoginSuccess();
+        console.log('hi');
         this.props.navigation.navigate('Visitor');
       });
   };
@@ -37,18 +38,22 @@ class Profile extends Component {
         </Container>
       );
     }
-    return (
-      <Container>
-        <Text style={styles.textStyle}>
-          Your Amazing Profile page {auth().currentUser.email}
-        </Text>
-        <Button
-          title="Logout"
-          onPress={() => this.logout()}
-          style={styles.submitButton}
-        />
-      </Container>
-    );
+    if (auth().currentUser) {
+      return (
+        <Container>
+          <Text style={styles.textStyle}>
+            Your Amazing Profile page {auth().currentUser.email}
+          </Text>
+          <Button
+            title="Logout"
+            onPress={() => this.logout()}
+            style={styles.submitButton}
+          />
+        </Container>
+      );
+    } else {
+      return <View />;
+    }
   }
 }
 const styles = EStyleSheet.create({

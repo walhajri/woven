@@ -54,7 +54,7 @@ class CandidateStatus extends Component {
 const styles = EStyleSheet.create({
   timeStyle: {
     textAlign: 'center',
-    backgroundColor: EStyleSheet.value('$primaryColor'),
+    backgroundColor: () => EStyleSheet.value('$primaryColor'),
     color: () => EStyleSheet.value('$white'),
     padding: 5,
     borderRadius: 13,
