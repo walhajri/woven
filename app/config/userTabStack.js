@@ -7,7 +7,7 @@ import Home from '../screens/User/Home';
 
 const UserTabStack = createBottomTabNavigator({
   AppliedJobs: {
-    screen: AuthStack,
+    screen: AppliedJobs,
     navigationOptions: () => ({
       title: 'Applied Jobs',
     }),
@@ -19,7 +19,7 @@ const UserTabStack = createBottomTabNavigator({
     }),
   },
   Profile: {
-    screen: AuthStack,
+    screen: Profile,
     navigationOptions: () => ({
       title: 'Profile',
     }),

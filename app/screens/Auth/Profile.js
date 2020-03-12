@@ -12,7 +12,7 @@ class Profile extends Component {
       .signOut()
       .then(() => {
         this.onLoginSuccess();
-        this.props.navigation.navigate('UserTabStack');
+        this.props.navigation.navigate('Visitor');
       });
   };
   login = () => {
@@ -31,6 +31,7 @@ class Profile extends Component {
   render() {
     const loader = {
       flex: 1,
+      flexDirection: 'column',
       justifyContent: 'center',
       padding: 10,
       marginTop: 90,
@@ -55,18 +56,7 @@ class Profile extends Component {
         </Container>
       );
     }
-    if (!auth().currentUser) {
-      return (
-        <Container>
-          <Text style={textStyle}>You are not logedin</Text>
-          <Button
-            style={submitButton}
-            title="Login"
-            onPress={() => this.login()}
-          />
-        </Container>
-      );
-    } else {
+    if (auth().currentUser) {
       return (
         <Container>
           <Text style={textStyle}>
@@ -79,6 +69,8 @@ class Profile extends Component {
           />
         </Container>
       );
+    } else {
+      return <View />;
     }
   }
 }

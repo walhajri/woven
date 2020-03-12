@@ -94,8 +94,10 @@ class Login extends Component {
     };
     const loader = {
       flex: 1,
+      flexDirection: 'column',
       justifyContent: 'center',
       padding: 10,
+      marginTop: 90,
     };
     const errorTextStyle = {
       fontSize: 18,
