@@ -16,33 +16,18 @@ class PreRegister extends Component {
     navigate('Register', {registerType: 'individual'});
   };
   render() {
-    const layout = {
-      marginTop: 150,
-      margin: 10,
-    };
-    const titleText = {
-      marginLeft: 40,
-      color: EStyleSheet.value('$primaryColor'),
-      fontSize: 24,
-    };
-    const submitButton = {
-      marginTop: 10,
-      marginRight: 40,
-      marginLeft: 40,
-      borderRadius: 20,
-      color: styles.text,
-    };
     return (
       <Container>
-        <View style={layout}>
-          <Text style={titleText}>Select Your Account</Text>
+        <View style={styles.layout}>
+          <Text style={styles.titleText}>Select Your Account</Text>
           <Button
-            style={styles.text}
+            style={styles.submitButton}
             title="I want to work"
+            type="outline"
             onPress={() => this.RegisterIndividual()}
           />
           <Button
-            style={submitButton}
+            style={styles.submitButton}
             title="I want to hire"
             onPress={() => this.RegisterCompany()}
             type="outline"
@@ -53,9 +38,20 @@ class PreRegister extends Component {
   }
 }
 const styles = EStyleSheet.create({
-  $textColor: '#0275d8',
-  text: {
-    color: '$textColor', // global variable $textColor
+  submitButton: {
+    marginTop: 10,
+    marginRight: 40,
+    marginLeft: 40,
+    borderRadius: 20,
+  },
+  layout: {
+    marginTop: 150,
+    margin: 10,
+  },
+  titleText: {
+    marginLeft: 40,
+    color: () => EStyleSheet.value('$primaryColor'),
+    fontSize: 24,
   },
 });
 export default PreRegister;

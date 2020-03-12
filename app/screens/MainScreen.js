@@ -3,6 +3,7 @@ import {View, Image} from 'react-native';
 import {Container} from '../components/Container';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class MainScreen extends Component {
   render() {
@@ -22,22 +23,12 @@ class MainScreen extends Component {
       const {navigate} = this.props.navigation;
       navigate('Auth');
     }
-    const logo = {
-      marginTop: 150,
-      width: 150,
-      height: 150,
-      alignContent: 'center',
-    };
-    const imageLayout = {
-      justifyContent: 'center',
-      alignItems: 'center',
-    };
     return (
       <Container>
-        <View style={imageLayout}>
+        <View style={styles.imageLayout}>
           <Image
             source={require('../data/images/logo.png')}
-            style={logo}
+            style={styles.logo}
             resizeMode="contain"
           />
         </View>
@@ -45,4 +36,16 @@ class MainScreen extends Component {
     );
   }
 }
+const styles = EStyleSheet.create({
+  logo: {
+    marginTop: 150,
+    width: 150,
+    height: 150,
+    alignContent: 'center',
+  },
+  imageLayout: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 export default MainScreen;

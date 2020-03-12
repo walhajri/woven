@@ -4,6 +4,7 @@ import {Button, Input} from 'react-native-elements';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class Register extends Component {
   Register = () => {
@@ -68,34 +69,15 @@ class Register extends Component {
     this.setState({accountType: param});
   }
   renderCurrentState() {
-    const layout = {
-      marginTop: 150,
-      margin: 10,
-    };
-    const submitButton = {
-      marginTop: 10,
-      marginRight: 50,
-      marginLeft: 50,
-    };
-    const loader = {
-      flex: 1,
-      justifyContent: 'center',
-      padding: 10,
-    };
-    const errorTextStyle = {
-      fontSize: 18,
-      alignSelf: 'center',
-      color: 'red',
-    };
     if (this.state.loading) {
       return (
         <View>
-          <ActivityIndicator size={'large'} style={loader} />
+          <ActivityIndicator size={'large'} style={styles.loader} />
         </View>
       );
     }
     return (
-      <View style={layout}>
+      <View style={styles.layout}>
         <Input
           placeholder="example@google.com"
           label="Email"
@@ -110,11 +92,11 @@ class Register extends Component {
           value={this.state.password}
         />
         <Button
-          style={submitButton}
+          style={styles.submitButton}
           title="Register"
           onPress={() => this.Register()}
         />
-        <Text style={errorTextStyle}>{this.state.error}</Text>
+        <Text style={styles.errorTextStyle}>{this.state.error}</Text>
       </View>
     );
   }
@@ -122,5 +104,25 @@ class Register extends Component {
     return <Container>{this.renderCurrentState()}</Container>;
   }
 }
-
+const styles = EStyleSheet.create({
+  layout: {
+    marginTop: 150,
+    margin: 10,
+  },
+  submitButton: {
+    marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
+  },
+  loader: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10,
+  },
+  errorTextStyle: {
+    fontSize: 18,
+    alignSelf: 'center',
+    color: () => EStyleSheet.value('$warning'),
+  },
+});
 export default Register;

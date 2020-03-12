@@ -27,51 +27,48 @@ class Profile extends Component {
   state = {
     loading: false,
   };
-  //check if the user is authenticated and then take him to the right screen
   render() {
-    const loader = {
-      flex: 1,
-      flexDirection: 'column',
-      justifyContent: 'center',
-      padding: 10,
-      marginTop: 90,
-    };
-    const submitButton = {
-      marginTop: 10,
-      marginRight: 50,
-      marginLeft: 50,
-    };
-    const textStyle = {
-      marginTop: 80,
-      textAlign: 'center',
-      fontWeight: 'bold',
-      fontSize: 18,
-    };
     if (this.state.loading) {
       return (
         <Container>
           <View>
-            <ActivityIndicator size={'large'} style={loader} />
+            <ActivityIndicator size={'large'} style={styles.loader} />
           </View>
         </Container>
       );
     }
-    if (auth().currentUser) {
-      return (
-        <Container>
-          <Text style={textStyle}>
-            Your Amazing Profile page {auth().currentUser.email}
-          </Text>
-          <Button
-            title="Logout"
-            onPress={() => this.logout()}
-            style={submitButton}
-          />
-        </Container>
-      );
-    } else {
-      return <View />;
-    }
+    return (
+      <Container>
+        <Text style={styles.textStyle}>
+          Your Amazing Profile page {auth().currentUser.email}
+        </Text>
+        <Button
+          title="Logout"
+          onPress={() => this.logout()}
+          style={styles.submitButton}
+        />
+      </Container>
+    );
   }
 }
+const styles = EStyleSheet.create({
+  loader: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 10,
+    marginTop: 90,
+  },
+  submitButton: {
+    marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
+  },
+  textStyle: {
+    marginTop: 80,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+});
 export default Profile;

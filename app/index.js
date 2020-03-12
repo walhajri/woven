@@ -11,6 +11,7 @@ EStyleSheet.build({
   $secondaryText: '#808080',
   $border: '#E2E2E2',
   $white: '#ffff',
+  $warning: 'red',
 });
 
 export default () => <MainStack />;

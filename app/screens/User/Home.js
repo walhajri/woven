@@ -4,7 +4,10 @@ import offers from '../../data/offers';
 import {ListItem, Separator} from '../../components/List';
 import {Container} from '../../components/Container';
 import {Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
+Icon.loadFont();
 //TODO: remove the login back button
 class Home extends Component {
   static navigationOptions = ({navigation}) => ({
@@ -13,8 +16,9 @@ class Home extends Component {
         style={{
           marginRight: 10,
           fontWeight: 'bold',
-          title: 'login',
+          backgroundColor: 'red',
         }}
+        icon={<Icon type="material" name="sign-in" size={20} color="white" />}
         onPress={() => {
           navigation.navigate('Auth');
         }}

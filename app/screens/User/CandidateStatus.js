@@ -34,24 +34,15 @@ class CandidateStatus extends Component {
     ];
   }
   render() {
-    const timeStyle = {
-      textAlign: 'center',
-      backgroundColor: EStyleSheet.value('$primaryColor'),
-      color: 'white',
-      padding: 5,
-      borderRadius: 13,
-    };
-    const descriptionStyle = {color: 'gray'};
-    const timeContainerStyle = {minWidth: 52, marginTop: -5};
     return (
       <Timeline
         circleSize={20}
         innerCircle="dot"
         circleColor="rgb(45,156,219)"
         lineColor="rgb(45,156,219)"
-        timeContainerStyle={timeContainerStyle}
-        timeStyle={timeStyle}
-        descriptionStyle={descriptionStyle}
+        timeContainerStyle={styles.timeContainerStyle}
+        timeStyle={styles.timeStyle}
+        descriptionStyle={styles.descriptionStyle}
         options={{
           style: {paddingTop: 50, padding: 10},
         }}
@@ -60,5 +51,16 @@ class CandidateStatus extends Component {
     );
   }
 }
+const styles = EStyleSheet.create({
+  timeStyle: {
+    textAlign: 'center',
+    backgroundColor: EStyleSheet.value('$primaryColor'),
+    color: () => EStyleSheet.value('$white'),
+    padding: 5,
+    borderRadius: 13,
+  },
+  descriptionStyle: {color: () => EStyleSheet.value('$gray')},
+  timeContainerStyle: {minWidth: 52, marginTop: -5},
+});
 
 export default CandidateStatus;

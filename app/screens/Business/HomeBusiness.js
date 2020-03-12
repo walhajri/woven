@@ -16,7 +16,6 @@ class HomeBusiness extends Component {
         style={{
           marginRight: 10,
           fontWeight: 'bold',
-          color: ()=>EStyleSheet.value('$primaryColor'),
         }}
         onPress={() => alert('This is a button!')}
         icon={<Icon type="material" name="plus" size={20} color="white" />}
@@ -40,11 +39,6 @@ class HomeBusiness extends Component {
   }
 
   render() {
-    const styles = EStyleSheet.create({
-      text: {
-        color: '$textColor',
-      },
-    });
     return (
       <Container>
         <View>
@@ -69,5 +63,9 @@ class HomeBusiness extends Component {
     );
   }
 }
-
+const styles = EStyleSheet.create({
+  text: {
+    color: '$textColor',
+  },
+});
 export default HomeBusiness;

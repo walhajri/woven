@@ -5,6 +5,7 @@ import {Input, Button} from 'react-native-elements';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import assetsObject from '../../assets/assets';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 Icon.loadFont();
 class Login extends Component {
@@ -68,59 +69,23 @@ class Login extends Component {
     error: '',
   };
   render() {
-    const layout = {
-      marginTop: 50,
-      margin: 10,
-    };
-    const submitButton = {
-      marginTop: 10,
-    };
-    const row = {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    };
-    const clearButton = {
-      alignContent: 'flex-end',
-    };
-    const logo = {
-      marginTop: 50,
-      width: 150,
-      height: 150,
-      alignContent: 'center',
-    };
-    const imageLayout = {
-      justifyContent: 'center',
-      alignItems: 'center',
-    };
-    const loader = {
-      flex: 1,
-      flexDirection: 'column',
-      justifyContent: 'center',
-      padding: 10,
-      marginTop: 90,
-    };
-    const errorTextStyle = {
-      fontSize: 18,
-      alignSelf: 'center',
-      color: 'red',
-    };
     if (this.state.loading) {
       return (
         <View>
-          <ActivityIndicator size={'large'} style={loader} />
+          <ActivityIndicator size={'large'} style={styles.loader} />
         </View>
       );
     }
-    // if (auth().currentUser) {
-    //   const {navigate} = this.props.navigation;
-    //   navigate('Home');
-    // }
     return (
       <Container>
-        <View style={imageLayout}>
-          <Image source={assetsObject.logo} style={logo} resizeMode="contain" />
+        <View style={styles.imageLayout}>
+          <Image
+            source={assetsObject.logo}
+            style={styles.logo}
+            resizeMode="contain"
+          />
         </View>
-        <View style={layout}>
+        <View style={styles.layout}>
           <Input
             placeholder="example@google.com"
             label="Email"
@@ -135,14 +100,18 @@ class Login extends Component {
             value={this.state.password}
           />
           <Button
-            style={submitButton}
+            style={styles.submitButton}
             title="Login"
             onPress={() => this.signin()}
           />
-          <View style={row}>
-            <Button style={clearButton} type="clear" title="Forgot Password?" />
+          <View style={styles.row}>
             <Button
-              style={clearButton}
+              style={styles.clearButton}
+              type="clear"
+              title="Forgot Password?"
+            />
+            <Button
+              style={styles.clearButton}
               type="clear"
               title="Register"
               onPress={() => this.register()}
@@ -151,16 +120,53 @@ class Login extends Component {
           <View />
           <View />
           <Button
-            style={clearButton}
+            style={styles.clearButton}
             type="clear"
             title="Skip"
             onPress={() => this.home()}
           />
         </View>
-        <Text style={errorTextStyle}>{this.state.error}</Text>
+        <Text style={styles.errorTextStyle}>{this.state.error}</Text>
       </Container>
     );
   }
 }
-
+const styles = EStyleSheet.create({
+  layout: {
+    marginTop: 50,
+    margin: 10,
+  },
+  submitButton: {
+    marginTop: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  clearButton: {
+    alignContent: 'flex-end',
+  },
+  logo: {
+    marginTop: 50,
+    width: 150,
+    height: 150,
+    alignContent: 'center',
+  },
+  imageLayout: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loader: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 10,
+    marginTop: 90,
+  },
+  errorTextStyle: {
+    fontSize: 18,
+    alignSelf: 'center',
+    color: () => EStyleSheet.value('$warning'),
+  },
+});
 export default Login;

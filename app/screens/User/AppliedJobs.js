@@ -6,6 +6,7 @@ import {ListItem, Separator} from '../../components/List';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import assetsObject from '../../assets/assets';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 class AppliedJob extends Component {
   handlePress = item => {
@@ -24,17 +25,6 @@ class AppliedJob extends Component {
   state = {appliedPositions: {}, appliedJobStatus: {}, empty: false};
 
   render() {
-    const textStyle = {
-      marginTop: 80,
-      textAlign: 'center',
-      fontWeight: 'bold',
-      fontSize: 18,
-    };
-    const logo = {
-      width: 150,
-      height: 150,
-      alignSelf: 'center',
-    };
     if (!this.state.empty) {
       return (
         <Container>
@@ -61,10 +51,10 @@ class AppliedJob extends Component {
     } else {
       return (
         <Container>
-          <Text style={textStyle}>You didn't applied to any job</Text>
+          <Text style={styles.textStyle}>You didn't applied to any job</Text>
           <Image
             source={assetsObject.emptyJob}
-            style={logo}
+            style={styles.logo}
             resizeMode="contain"
           />
         </Container>
@@ -72,4 +62,17 @@ class AppliedJob extends Component {
     }
   }
 }
+const styles = EStyleSheet.create({
+  textStyle: {
+    marginTop: 80,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    alignSelf: 'center',
+  },
+});
 export default AppliedJob;
