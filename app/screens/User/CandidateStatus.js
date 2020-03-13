@@ -3,11 +3,28 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Container} from '../../components/Container';
 import {View} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import jobStatus from '../../data/jobStatus';
+import {Button} from 'react-native-elements';
 import Timeline from 'react-native-timeline-flatlist';
 
 Icon.loadFont();
 class CandidateStatus extends Component {
+  static navigationOptions = ({navigation}) => ({
+    headerLeft: (
+      //TODO: change the color of the button
+      <Button
+        style={{
+          marginLeft: 10,
+          fontWeight: 'bold',
+        }}
+        icon={
+          <Icon type="material" name="chevron-left" size={20} color="white" />
+        }
+        onPress={() => {
+          navigation.navigate('UserPath');
+        }}
+      />
+    ),
+  });
   constructor() {
     super();
     this.data = [

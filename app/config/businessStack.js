@@ -1,5 +1,6 @@
 import HomeBusiness from '../screens/Business/HomeBusiness';
 import {createStackNavigator} from 'react-navigation-stack';
+import AddPostion from '../screens/Business/AddPostion';
 
 const BusinessStack = createStackNavigator(
   {
@@ -7,6 +8,12 @@ const BusinessStack = createStackNavigator(
       screen: HomeBusiness,
       navigationOptions: () => ({
         title: 'Business Home',
+      }),
+    },
+    AddPostion: {
+      screen: AddPostion,
+      navigationOptions: () => ({
+        title: 'Add Postion',
       }),
     },
   },

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, Button, View, Image} from 'react-native';
+import {Text, Button, View, Image, ActivityIndicator} from 'react-native';
 import {Container} from '../../components/Container';
 import {Divider} from '../../components/Shapes/Divider';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -9,23 +9,30 @@ import assetsObject from '../../assets/assets';
 
 class JobDetails extends Component {
   handlePress = () => {
+    this.setState({loading: true});
+    this.render();
     let db = firestore();
     const {navigate} = this.props.navigation;
     if (auth().currentUser) {
       // TODO: make sure not to add the same job twice
-      db.collection('appliedJobs').add({
-        postion: this.state.position.position,
-        seekerID: auth().currentUser.uid,
-        businessID: 'ss',
-        status: 'review',
-      });
-      navigate('AppliedJobs', {job: this.render.param});
+      db.collection('appliedJobs')
+        .add({
+          postion: this.state.position.position,
+          seekerID: auth().currentUser.uid,
+          businessID: this.state.position.businessID,
+          status: 'review',
+        })
+        .then(() => {
+          this.props.navigation.navigate('UserPath');
+        });
+      // {job: this.render.param}s
     } else {
       navigate('Auth');
     }
   };
   state = {
     position: {},
+    loading: false,
   };
   componentDidMount() {
     const param = this.props.navigation.getParam('item');
@@ -33,6 +40,13 @@ class JobDetails extends Component {
   }
   render() {
     const param = this.state.position;
+    if (this.state.loading) {
+      return (
+        <View>
+          <ActivityIndicator size={'large'} style={styles.loader} />
+        </View>
+      );
+    }
     return (
       <Container>
         <View style={styles.mainDetail}>
@@ -63,6 +77,13 @@ class JobDetails extends Component {
 
 const styles = EStyleSheet.create({
   pagelayout: {margin: 20},
+  loader: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 10,
+    marginTop: 90,
+  },
   title: {
     margin: 10,
     fontSize: 20,

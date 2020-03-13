@@ -4,13 +4,18 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import AuthStack from './authStack';
 import MainScreen from '../screens/MainScreen';
 import VisitorStack from './visitorStack';
+import UserStack from './userStack';
+import BusinessStack from './businessStack';
+import CandidateStatus from '../screens/User/CandidateStatus';
 
 const MainStack = createAppContainer(
   createSwitchNavigator(
     {
       MainScreen: MainScreen,
       UserPath: UserTabStack,
+
       BusinessPath: BusinessTabStack,
+      // Business: BusinessStack,
       Auth: AuthStack,
       Visitor: VisitorStack,
     },

@@ -10,19 +10,21 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 Icon.loadFont();
 class HomeBusiness extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     headerRight: (
       <Button
         style={{
           marginRight: 10,
           fontWeight: 'bold',
         }}
-        onPress={() => alert('This is a button!')}
+        onPress={() => {
+          navigation.navigate('AddPostion');
+        }}
         icon={<Icon type="material" name="plus" size={20} color="white" />}
         color="#fff"
       />
     ),
-  };
+  });
   handlePress = item => {
     console.log('hi');
   };

@@ -24,7 +24,7 @@ class Register extends Component {
       .then(() => {
         this.onLoginSuccess();
         const {navigate} = this.props.navigation;
-        navigate('Tab');
+        navigate('UserPath');
       })
       .catch(error => {
         let errorCode = error.code;

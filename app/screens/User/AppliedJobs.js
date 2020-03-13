@@ -20,9 +20,9 @@ class AppliedJob extends Component {
       this.setState({empty: true});
     }
     this.setState({appliedPositions: positions, appliedJobStatus: status});
+    console.log('yo ma boy');
   }
-
-  state = {appliedPositions: {}, appliedJobStatus: {}, empty: false};
+  state = {appliedPositions: {}, appliedJobStatus: {}, empty: false, count: 0};
 
   render() {
     if (!this.state.empty) {
