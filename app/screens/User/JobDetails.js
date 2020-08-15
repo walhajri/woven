@@ -23,7 +23,7 @@ class JobDetails extends Component {
           status: 'review',
         })
         .then(() => {
-          this.props.navigation.navigate('UserPath');
+          this.props.navigation.navigate('AppliedJobs');
         });
       // {job: this.render.param}s
     } else {

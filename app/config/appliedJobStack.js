@@ -5,18 +5,18 @@ import CandidateStatus from '../screens/User/CandidateStatus';
 import {createStackNavigator} from 'react-navigation-stack';
 import AppliedJobs from '../screens/User/AppliedJobs';
 
-const UserStack = createStackNavigator(
+const AppliedJobStack = createStackNavigator(
   {
+    AppliedJobs: {
+      screen: AppliedJobs,
+      navigationOptions: () => ({
+        title: 'Applied Jobs',
+      }),
+    },
     CandidateStatus: {
       screen: CandidateStatus,
       navigationOptions: () => ({
         title: 'Job Status',
-      }),
-    },
-    JobDetails: {
-      screen: JobDetails,
-      navigationOptions: () => ({
-        title: 'Job Discription',
       }),
     },
   },
@@ -24,4 +24,4 @@ const UserStack = createStackNavigator(
     headerMode: 'screen',
   },
 );
-export default UserStack;
+export default AppliedJobStack;

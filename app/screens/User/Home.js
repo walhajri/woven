@@ -6,10 +6,11 @@ import {Container} from '../../components/Container';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import auth from '@react-native-firebase/auth';
 
 Icon.loadFont();
 class Home extends Component {
-  static navigationOptions = ({navigation}) => ({
+  static navigationOptions = ({handlePress, navigation}) => ({
     headerRight: (
       //TODO: change the color of the button
       <Button
@@ -44,6 +45,9 @@ class Home extends Component {
   }
 
   render() {
+    // if (auth().currentUser) {
+    //   this.props.navigation.navigate('UserPath');
+    // }
     return (
       <Container>
         <View>
