@@ -13,9 +13,7 @@ const MainStack = createAppContainer(
     {
       MainScreen: MainScreen,
       UserPath: UserTabStack,
-      // User: UserStack,
-      BusinessPath: BusinessTabStack,
-      // Business: BusinessStack,
+      // BusinessPath: BusinessTabStack,
       Auth: AuthStack,
       Visitor: VisitorStack,
     },

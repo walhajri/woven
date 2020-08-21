@@ -1,24 +1,26 @@
 import React, {Component} from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, View,Image} from 'react-native';
 import offers from '../../data/offers';
 import {ListItem, Separator} from '../../components/List';
 import {Container} from '../../components/Container';
 import {Button} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from 'react-native-elements'
 import EStyleSheet from 'react-native-extended-stylesheet';
 import auth from '@react-native-firebase/auth';
+import assetsObject from '../../assets/assets';
 
-Icon.loadFont();
 class Home extends Component {
   static navigationOptions = ({handlePress, navigation}) => ({
     headerRight: (
       //TODO: change the color of the button
       <Button
         style={{
-          marginRight: 10,
+          marginRight: 2000,
           fontWeight: 'bold',
+          backgroundColor: '#008ba3'
         }}
-        icon={<Icon type="material" name="sign-in" size={20} color="white" />}
+        //<Image source={assetsObject.loginIcon}/>
+        icon={<Image source={assetsObject.loginIcon}/>}
         onPress={() => {
           navigation.navigate('Auth');
         }}
