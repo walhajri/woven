@@ -7,7 +7,7 @@ async function getAppliedJobs() {
   var finalList = [];
   let positionID = {};
   await db
-    .collection('appliedJobs')
+    .collection('users/'+auth().currentUser.uid+'/appliedJobs')
     .get()
     .then(snapshot => {
       //just get the data for the user

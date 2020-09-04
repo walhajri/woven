@@ -15,23 +15,35 @@ class JobDetails extends Component {
     let db = firestore();
     const {navigate} = this.props.navigation;
     if (auth().currentUser) {
-      console.log(String(auth().currentUser.uid))
-      // TODO: make sure not to add the same job twice
-      // TODO: read more about firestore way of storing objects
-      // TODO: add all the applied job for a user in a single document
-      //Note:path    users/G5XNCOaKOka23VBZJlp8FNG27B12/appliedJobs/
-      db.collection('users/'+auth().currentUser.uid+'/appliedJobs')
-        .add({
-          position: this.state.position.position,
-          seekerID: auth().currentUser.uid,
-          businessID: this.state.position.businessID,
-          status: 'review',
-        })
-        .then(() => {
-          //TODO: make sure to empty the navigation stack
-          this.props.navigation.navigate('AppliedJobs');
-        });
-      // {job: this.render.param}s
+      //TODO : move the the calls to the data folder
+      const path = db.collection('users/'+auth().currentUser.uid+'/appliedJobs');
+      const job = path.doc(this.state.position.position);
+      const positionID = this.state.position.position;
+      const businessID = this.state.position.businessID;
+      job.get().then(function(doc) {
+        if (doc.exists) {
+          console.log("Already appiled to this job");
+          navigate('CandidateStatus', {status: {}});
+        } else {
+          console.log('Applying for this job', doc.ref)
+          job.set({
+            position: positionID,
+            seekerID: auth().currentUser.uid,
+            businessID: businessID,
+            status: 'review',
+          })
+          .then(() => {
+            //TODO: make sure to empty the navigation stack
+            console.log("Document written with ID: ", job.id);
+            navigate('AppliedJobs');
+          })
+          .catch(function(error) {
+            console.error("Error adding document: ", error);
+          });
+        }
+      }).catch(function(error) {
+        console.log("Error getting document:", error);
+      });
     } else {
       navigate('Auth');
     }
