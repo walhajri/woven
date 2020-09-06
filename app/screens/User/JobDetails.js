@@ -9,6 +9,7 @@ import assetsObject from '../../assets/assets';
 import appliedJobState from './AppliedJobs'
 
 class JobDetails extends Component {
+  //NOTE: this method will trigger when the user will apply to job, and will check if the postion exists or not
   handlePress = () => {
     this.setState({loading: true});
     this.render();
@@ -20,6 +21,12 @@ class JobDetails extends Component {
       const job = path.doc(this.state.position.position);
       const positionID = this.state.position.position;
       const businessID = this.state.position.businessID;
+      const jobCompany = this.state.position.jobCompany;
+      const jobDays = this.state.position.jobDays;
+      const jobDescription = this.state.position.jobDescription;
+      const jobTitle = this.state.position.jobTitle;
+      const jobTotalSalary = this.state.position.jobTotalSalary;
+      const jobLocation = this.state.position.jobLocation;
       job.get().then(function(doc) {
         if (doc.exists) {
           console.log("Already appiled to this job");
@@ -31,6 +38,12 @@ class JobDetails extends Component {
             seekerID: auth().currentUser.uid,
             businessID: businessID,
             status: 'review',
+            jobCompany: jobCompany,
+            jobDays: jobDays,
+            jobDescription: jobDescription,
+            jobTitle: jobTitle,
+            jobTotalSalary: jobTotalSalary,
+            jobLocation: jobLocation,
           })
           .then(() => {
             //TODO: make sure to empty the navigation stack
@@ -74,7 +87,7 @@ class JobDetails extends Component {
             />
           </View>
           <View>
-            <Text style={styles.mainText}>{param.jobTile}</Text>
+            <Text style={styles.mainText}>{param.jobTitle}</Text>
             <Text style={styles.subText}>{param.jobLocation}</Text>
             <Text style={styles.subText}>{param.jobTotalSalary + ' SR'}</Text>
           </View>

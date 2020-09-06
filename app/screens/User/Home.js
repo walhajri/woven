@@ -14,6 +14,7 @@ class Home extends Component {
     headerRight: (
       //TODO: change the color of the button
       <Button
+      //TODO: centerlize the styles of the application
         style={{
           marginRight: 2000,
           fontWeight: 'bold',
@@ -58,7 +59,7 @@ class Home extends Component {
             renderItem={({item}) => (
               <ListItem
                 img={item.img}
-                jobTile={item.jobTile}
+                jobTitle={item.jobTitle}
                 jobLocation={item.jobLocation}
                 jobTotalSalary={item.jobTotalSalary}
                 jobCompany={item.jobCompany}

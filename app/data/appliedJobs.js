@@ -10,40 +10,44 @@ async function getAppliedJobs() {
     .collection('users/'+auth().currentUser.uid+'/appliedJobs')
     .get()
     .then(snapshot => {
-      //just get the data for the user
-      console.log('AppliedJob-data:snapshot-length', snapshot.docs.length)
-      snapshot.docs.forEach((doc, index, array) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
         let data = doc.data();
-        if (auth().currentUser.uid === data.seekerID) {
-          positionID[data.position] = data.position;
-          console.log('AppliedJob-data:data.poistion',data.position);
-          if (index === array.length - 1) {
-            finalList = getPositions(positionID);
-          }
-        }
-      });
+        finalList.push(data);
     });
-    console.log('AppliedJob-data:finallist',finalList);
+      // console.log('AppliedJob-data:snapshot-length', snapshot.docs.length)
+      // snapshot.docs.forEach((doc, index, array) => {
+      //   let data = doc.data();
+      //   positionID[data.position] = data.position;
+      //   console.log('AppliedJob-data:data.poistion',data.position);
+      //   if (index === array.length - 1) {
+      //     finalList = getPositions(positionID);
+      //   }
+      //   console.log('AppliedJob-data:finallist-first',finalList.length);
+      // });
+    });
+    console.log('AppliedJob-data:finallist',finalList.length);
   return finalList;
 }
-async function getPositions(post) {
-  let appliedJobs = [];
-  await db
-    .collection('positions')
-    .get()
-    .then(snapshot => {
-      snapshot.docs.forEach(doc => {
-        let data = doc.data();
-        data.position = doc.id;
-        //TODO: find a better maybe hashmap will do it -\(*.*)/-
-        if (post[doc.id] !== undefined) {
-          appliedJobs.push(data);
-        }
-      });
-    });
-  return appliedJobs;
-}
 export default getAppliedJobs;
+
+// async function getPositions(post) {
+//   let appliedJobs = [];
+//   await db
+//     .collection('positions')
+//     .get()
+//     .then(snapshot => {
+//       snapshot.docs.forEach(doc => {
+//         let data = doc.data();
+//         data.position = doc.id;
+//         //TODO: find a better maybe hashmap will do it -\(*.*)/-
+//         if (post[doc.id] !== undefined) {
+//           appliedJobs.push(data);
+//         }
+//       });
+//     });
+//   return appliedJobs;
+// }
 //   {
 //     img: '',
 //     jobCompany: 'Starbucks',

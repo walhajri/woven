@@ -15,7 +15,7 @@ class AppliedJob extends Component {
 
     // this will fire every time AppliedJob receives navigation focus
     this.props.navigation.addListener('willFocus', () => {
-      //this.componentDidMount()
+      this.componentDidMount()
     })
   }
   handlePress = item => {
@@ -25,13 +25,13 @@ class AppliedJob extends Component {
   async componentDidMount() {
     let positions = await appliedJobs();
     let status = await appliedJobStatus();
-    console.log('AppliedJob:positions-data= '+ positions.data);
-    if (positions.length === 0) {
-      this.setState({empty: true});
-    }
     this.render()
     this.setState({appliedPositions: positions, appliedJobStatus: status});
-    console.log('AppliedJob:positions-length= '+ positions.length);
+    if (positions.length === 0) {
+      this.setState({empty: true});
+    }else{
+      this.setState({empty: false})
+    }
   }
   state = {appliedPositions: {}, appliedJobStatus: {}, empty: false, count: 0};
 
@@ -45,7 +45,7 @@ class AppliedJob extends Component {
               renderItem={({item}) => (
                 <ListItem
                   img={item.img}
-                  jobTile={item.jobTile}
+                  jobTitle={item.jobTitle}
                   jobLocation={item.jobLocation}
                   jobTotalSalary={item.jobTotalSalary}
                   jobCompany={item.jobCompany}

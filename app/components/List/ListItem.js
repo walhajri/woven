@@ -9,7 +9,7 @@ import assetsObject from '../../assets/assets';
 const ListItem = ({
   img,
   jobCompany,
-  jobTile,
+  jobTitle,
   jobLocation,
   jobTotalSalary,
   onPress,
@@ -26,7 +26,7 @@ const ListItem = ({
           />
           <View style={styles.groupText}>
             <Text style={styles.secondaryText}>{jobCompany}</Text>
-            <Text style={styles.primaryText}>{jobTile}</Text>
+            <Text style={styles.primaryText}>{jobTitle}</Text>
             <Text style={styles.secondaryText}>{jobLocation}</Text>
           </View>
           <View>
@@ -41,7 +41,7 @@ const ListItem = ({
 ListItem.propTypes = {
   img: PropTypes.any,
   jobCompany: PropTypes.string,
-  jobTile: PropTypes.string,
+  jobTitle: PropTypes.string,
   jobLocation: PropTypes.string,
   jobTotalSalary: PropTypes.string,
   jobDays: PropTypes.array,
