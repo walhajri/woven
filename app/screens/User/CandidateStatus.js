@@ -54,15 +54,17 @@ class CandidateStatus extends Component {
     return (
       <Timeline
         circleSize={20}
-        innerCircle="dot"
         circleColor="rgb(45,156,219)"
         lineColor="rgb(45,156,219)"
-        timeContainerStyle={styles.timeContainerStyle}
-        timeStyle={styles.timeStyle}
-        descriptionStyle={styles.descriptionStyle}
+        //description text color
+        descriptionStyle={{color:'gray'}}
+        //description box style
+        detailContainerStyle={{marginBottom: 20, paddingLeft: 5, paddingRight: 5, backgroundColor: "#BBDAFF", borderRadius: 10}}
         options={{
-          style: {paddingTop: 50, padding: 10},
+         style: {paddingTop: 15, padding: 5},
         }}
+        // to fix the shift problem
+        timeContainerStyle={{minWidth:52, marginTop: -5}}
         data={this.data}
       />
     );
