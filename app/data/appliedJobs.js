@@ -7,7 +7,7 @@ async function getAppliedJobs() {
   var finalList = [];
   let positionID = {};
   await db
-    .collection('users/'+auth().currentUser.uid+'/appliedJobs')
+    .collection('appliedJobs').where("seekerID", "==", auth().currentUser.uid)
     .get()
     .then(snapshot => {
       snapshot.forEach((doc) => {
