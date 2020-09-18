@@ -5,14 +5,12 @@ let db = firestore();
 async function getAppliedJobStatus() {
   var finalList = [];
   await db
-    .collection('appliedJobs')
+    .collection('appliedJobs').where("seekerID", "==", auth().currentUser.uid)
     .get()
     .then(snapshot => {
       snapshot.docs.forEach(doc => {
         let data = doc.data();
-        if (auth().currentUser.uid === data.seekerID) {
-          finalList.push(data);
-        }
+        finalList.push(data);
       });
     });
   return finalList;

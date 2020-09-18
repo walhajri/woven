@@ -18,7 +18,7 @@ class JobDetails extends Component {
     if (auth().currentUser) {
       //TODO : move the the calls to the data folder
       const path = db.collection('appliedJobs');
-      const job = path.doc(this.state.position.position+auth().currentUser.uid);
+      const job = path.doc(auth().currentUser.uid+this.state.position.position);
       const positionID = this.state.position.position;
       const businessID = this.state.position.businessID;
       const jobCompany = this.state.position.jobCompany;
