@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {FlatList, View,Image} from 'react-native';
-import offers from '../../data/offers';
+import offers from '../../data/firestore/offers';
 import {ListItem, Separator} from '../../components/List';
 import {Container} from '../../components/Container';
 import {Button} from 'react-native-elements';

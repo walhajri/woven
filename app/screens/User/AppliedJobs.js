@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {FlatList, View, Text, Image} from 'react-native';
-import appliedJobs from '../../data/appliedJobs';
-import appliedJobStatus from '../../data/appliedJobStatus';
+import appliedJobs from '../../data/firestore/appliedJobs';
+import appliedJobStatus from '../../data/firestore/appliedJobStatus';
 import {ListItem, Separator} from '../../components/List';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
