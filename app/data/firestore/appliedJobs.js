@@ -10,7 +10,6 @@ async function getAppliedJobs() {
     .get()
     .then(snapshot => {
       snapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         let data = doc.data();
         finalList.push(data);
     });

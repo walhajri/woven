@@ -1,4 +1,4 @@
-const color = {
+const colors = {
   primaryColor: '#00bcd4',
   darkPrimaryColor: '#005662',
   gray: '#808080',
@@ -7,4 +7,7 @@ const color = {
   secondaryText: '#808080',
   border: '#E2E2E2',
   white: '#ffff',
+  success: '#009688'
 };
+
+export default colors

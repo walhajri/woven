@@ -20,7 +20,7 @@ class AppliedJob extends Component {
   }
   handlePress = item => {
     const {navigate} = this.props.navigation;
-    navigate('CandidateStatus', {status: this.state.appliedJobStatus});
+    navigate('CandidateStatus', {item: item});
   };
   async componentDidMount() {
     let positions = await appliedJobs();

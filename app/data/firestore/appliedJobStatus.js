@@ -2,10 +2,11 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
 let db = firestore();
-async function getAppliedJobStatus() {
+async function getAppliedJobStatus(posistion,seekerID) {
   var finalList = [];
   await db
-    .collection('appliedJobs').where("seekerID", "==", auth().currentUser.uid)
+    .doc('appliedJobs/'+seekerID+posistion)
+    .collection('statusInfo')
     .get()
     .then(snapshot => {
       snapshot.docs.forEach(doc => {

@@ -1,38 +1,31 @@
 import React, {Component} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Container} from '../../components/Container';
-import {View} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import {Button} from 'react-native-elements';
+import appliedJobStatus from '../../data/firestore/appliedJobStatus';
 import Timeline from 'react-native-timeline-flatlist';
+import colors from '../../assets/color'
 
 Icon.loadFont();
 class CandidateStatus extends Component {
-  // static navigationOptions = ({navigation}) => ({
-  //   headerLeft: (
-  //     //TODO: change the color of the button
-  //     <Button
-  //       style={{
-  //         marginLeft: 10,
-  //         fontWeight: 'bold',
-  //       }}
-  //       icon={
-  //         <Icon type="material" name="chevron-left" size={20} color="white" />
-  //       }
-  //       onPress={() => {
-  //         navigation.navigate('UserPath');
-  //       }}
-  //     />
-  //   ),
-  // });
+  state = {
+    position: {},
+    loading: false,
+  };
+  async componentDidMount() {
+    const param = this.props.navigation.getParam('item');
+    let status = await appliedJobStatus(param.position,param.seekerID);
+    this.setState({position: status});
+
+    console.log('screen status'+ JSON.stringify(status));
+  }
   constructor() {
     super();
     this.data = [
       {
         time: '17 Jan',
         title: 'Submit Request',
-        circleColor: '#009688',
-        lineColor: '#009688',
+        circleColor: colors.primaryColor,
+        lineColor: colors.primaryColor,
         description:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet sem felis. Curabitur tempor lacinia felis et ullamcorper. Aliquam tristique quis erat eu lacinia. Praesent mollis at ligula id.',
       },
@@ -65,7 +58,7 @@ class CandidateStatus extends Component {
         }}
         // to fix the shift problem
         timeContainerStyle={{minWidth:52, marginTop: -5}}
-        data={this.data}
+        data={this.state.position}
       />
     );
   }

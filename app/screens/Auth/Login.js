@@ -53,7 +53,7 @@ class Login extends Component {
           let User = 'UserPath';
           const Stack = doc.data().accountType === 'company' ? Business : User;
           const {navigate} = this.props.navigation;
-          navigate(Stack);
+          navigate(User);
         });
     }
   }

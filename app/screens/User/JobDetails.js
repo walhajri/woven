@@ -7,10 +7,12 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import assetsObject from '../../assets/assets';
 import appliedJobState from './AppliedJobs'
+import colors from '../../assets/color';
 
 class JobDetails extends Component {
   //NOTE: this method will trigger when the user will apply to job, and will check if the postion exists or not
   handlePress = () => {
+    let [month, date, year] = (new Date()).toLocaleDateString().split("/");
     this.setState({loading: true});
     this.render();
     let db = firestore();
@@ -19,6 +21,7 @@ class JobDetails extends Component {
       //TODO : move the the calls to the data folder
       const path = db.collection('appliedJobs');
       const job = path.doc(auth().currentUser.uid+this.state.position.position);
+      const status = job.collection("statusInfo");
       const positionID = this.state.position.position;
       const businessID = this.state.position.businessID;
       const jobCompany = this.state.position.jobCompany;
@@ -29,6 +32,7 @@ class JobDetails extends Component {
       const jobLocation = this.state.position.jobLocation;
       job.get().then(function(doc) {
         if (doc.exists) {
+          //TODO: make a toast message telling the user that he is already applied for this job
           console.log("Already appiled to this job");
           navigate('CandidateStatus', {status: {}});
         } else {
@@ -52,6 +56,14 @@ class JobDetails extends Component {
           })
           .catch(function(error) {
             console.error("Error adding document: ", error);
+          });
+          status.add({
+            //Note: static message
+            title: 'Request has been sent',
+            time: date+'/'+month+'/'+year,
+            lineColor: colors.success,
+            circleColor: colors.success,
+            description: "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish."
           });
         }
       }).catch(function(error) {
