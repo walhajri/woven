@@ -10,24 +10,18 @@ import auth from '@react-native-firebase/auth';
 import assetsObject from '../../assets/assets';
 
 class Home extends Component {
-  static navigationOptions = ({handlePress, navigation}) => ({
-    headerRight: (
-      //TODO: change the color of the button
-      <Button
-      //TODO: centerlize the styles of the application
-        style={{
-          marginRight: 2000,
-          fontWeight: 'bold',
-          backgroundColor: '#008ba3'
-        }}
-        //<Image source={assetsObject.loginIcon}/>
-        icon={<Image source={assetsObject.loginIcon}/>}
-        onPress={() => {
-          navigation.navigate('Auth');
-        }}
-      />
-    ),
-  });
+  // static navigationOptions = ({handlePress, navigation}) => ({
+  //   headerRight: (
+  //     //TODO: change the color of the button
+  //     <Button
+  //       //<Image source={assetsObject.loginIcon}/>
+  //       icon={<Image source={assetsObject.loginIcon}/>}
+  //       onPress={() => {
+  //         navigation.navigate('Auth');
+  //       }}
+  //     />
+  //   ),
+  // });
 
   handlePress = item => {
     this.props.navigation.navigate('JobDetails', {item: item});
@@ -48,9 +42,6 @@ class Home extends Component {
   }
 
   render() {
-    // if (auth().currentUser) {
-    //   this.props.navigation.navigate('UserPath');
-    // }
     return (
       <Container>
         <View>
