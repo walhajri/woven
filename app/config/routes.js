@@ -1,44 +1,38 @@
 import UserTabStack from './userTabStack';
 import BusinessTabStack from './businessTabStack';
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import AuthStack from './authStack';
 import MainScreen from '../screens/MainScreen';
 import VisitorStack from './visitorStack';
+import React, {Component} from 'react';
 import UserStack from './homeStack';
 import BusinessStack from './businessStack';
 import CandidateStatus from '../screens/User/CandidateStatus';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const MainStack = createAppContainer(
-  createSwitchNavigator(
-    {
-      MainScreen: MainScreen,
-      UserPath: UserTabStack,
-      // BusinessPath: BusinessTabStack,
-      Auth: AuthStack,
-      Visitor: VisitorStack,
-    },
-    {
-      initialRouteName: 'MainScreen',
-    },
-  ),
-);
+const Stack = createStackNavigator();
+function MainStack() {
+  return (
+    <Stack.Navigator initialRouteName="MainScreen">
+      <Stack.Screen name="MainScreen" component={MainScreen} />
+      <Stack.Screen name="UserPath" component={UserTabStack} />
+      <Stack.Screen name="Auth" component={AuthStack} />
+      <Stack.Screen name="Visitor" component={VisitorStack} />
+    </Stack.Navigator>
+  );
+}
 
-// const User = createSwitchNavigator(
-//   {
-//     UserTab: UserTabStack,
-//   },
-//   {
-//     initialRouteName: 'UserTab',
-//   },
-// );
-// const Business = createSwitchNavigator(
-//   {
-//     BusinessTab: BusinessTabStack,
-//     Business: BusinessStack,
-//     Auth: AuthStack,
-//   },
-//   {
-//     initialRouteName: 'BusinessTab',
-//   },
-// );
 export default MainStack;
+
+// const MainStack = createAppContainer(
+//   createSwitchNavigator(
+//     {
+//       MainScreen: MainScreen,
+//       UserPath: UserTabStack,
+//       Auth: AuthStack,
+//       Visitor: VisitorStack,
+//     },
+//     {
+//       initialRouteName: 'MainScreen',
+//     },
+//   ),
+// );

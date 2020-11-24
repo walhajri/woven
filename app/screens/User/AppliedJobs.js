@@ -7,6 +7,7 @@ import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import assetsObject from '../../assets/assets';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { useNavigation } from '@react-navigation/native';
 
 class AppliedJob extends Component {
   constructor(props) {
@@ -19,8 +20,8 @@ class AppliedJob extends Component {
     })
   }
   handlePress = item => {
-    const {navigate} = this.props.navigation;
-    navigate('CandidateStatus', {item: item});
+    const navigation = useNavigation();
+    navigation.navigate('CandidateStatus', {item: item});
   };
   async componentDidMount() {
     let positions = await appliedJobs();

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Image, ActivityIndicator, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Input, Button} from 'react-native-elements';
@@ -7,146 +7,142 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import assetsObject from '../../assets/assets';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { useNavigation } from '@react-navigation/native';
 
 Icon.loadFont();
-class Login extends Component {
-  signin() {
-    this.setState({error: '', loading: true});
-    this.render();
-    auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
-        this.onLoginSuccess();
-        this.navigateToRightStack();
-      })
-      .catch(error => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        switch (errorCode) {
-          case 'auth/user-disabled':
-            this.onLoginFailure.bind(this)('Your account has been disabled');
-            break;
-          case 'auth/invalid-email':
-            this.onLoginFailure.bind(this)('This email is not vaild');
-            break;
-          case 'auth/user-not-found':
-            this.onLoginFailure.bind(this)('This email is not registered');
-            break;
-          case 'auth/wrong-password':
-            this.onLoginFailure.bind(this)('Wrong Password');
-            break;
-          default:
-            this.onLoginFailure.bind(this)(
-              'Well something went wrong contact us' + errorMessage,
-            );
-        }
-      });
-  }
-  navigateToRightStack() {
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  function signin() {
+      const navigation = useNavigation();
+      setError();
+      setLoading(true);
+      useEffect();
+      auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          onLoginSuccess();
+          navigateToRightStack();
+        })
+        .catch(error => {
+          let errorCode = error.code;
+          let errorMessage = error.message;
+          switch (errorCode) {
+            case 'auth/user-disabled':
+              onLoginFailure('Your account has been disabled');
+              break;
+            case 'auth/invalid-email':
+              onLoginFailure('This email is not vaild');
+              break;
+            case 'auth/user-not-found':
+              onLoginFailure('This email is not registered');
+              break;
+            case 'auth/wrong-password':
+              onLoginFailure('Wrong Password');
+              break;
+            default:
+              onLoginFailure('Well something went wrong contact us' + errorMessage);
+          }
+        });
+    }
+  function navigateToRightStack() {
     let db = firestore();
     if (auth().currentUser) {
       db.collection('users')
         .doc(auth().currentUser.uid)
         .get()
         .then(doc => {
-          let Business = 'BusinessPath';
           let User = 'UserPath';
-          const Stack = doc.data().accountType === 'company' ? Business : User;
-          const {navigate} = this.props.navigation;
-          navigate(User);
+          navigation.navigate(User);
         });
     }
   }
-  onLoginSuccess() {
-    this.setState({
-      email: '',
-      password: '',
-      error: '',
-      loading: false,
-    });
+  function onLoginSuccess() {
+    setEmail('');
+    setPassword('');
+    setError('');
+    setLoading(false);
   }
-  onLoginFailure(errorMessage) {
-    this.setState({error: errorMessage, loading: false});
+  function onLoginFailure(errorMessage) {
+    setError(errorMessage);
+    setLoading(false);
   }
-  register = () => {
+  function register() {
     console.log('add the individual user');
-    const {navigate} = this.props.navigation;
-    navigate('Register', {registerType: 'user'});
+    navigation.navigate('Register', {registerType: 'user'});
   };
-  home = () => {
-    const {navigate} = this.props.navigation;
-    navigate('Visitor');
+  function home() {
+    navigation.navigate('Visitor');
   };
-  state = {
-    email: '',
-    password: '',
-    authentication: false,
-    loading: false,
-    error: '',
-  };
-  render() {
-    if (this.state.loading) {
-      return (
-        <View>
-          <ActivityIndicator size={'large'} style={styles.loader} />
-        </View>
-      );
-    }
+  useEffect(()=> {
+
+
+  }, [loading])
+  if (loading) {
+    return (
+      <View>
+        <ActivityIndicator size={'large'} style={styles.loader} />
+      </View>
+    )
+  }
+  else{
     return (
       <Container>
-        <View style={styles.imageLayout}>
-          <Image
-            source={assetsObject.logo}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-        </View>
-        <View style={styles.layout}>
-          <Input
-            placeholder="example@google.com"
-            label="Email"
-            onChangeText={email => this.setState({email})}
-            value={this.state.email}
-          />
-          <Input
-            placeholder="******"
-            label="Password"
-            secureTextEntry
-            onChangeText={password => this.setState({password})}
-            value={this.state.password}
-          />
-          <Button
-            style={styles.submitButton}
-            title="Login"
-            onPress={() => this.signin()}
-          />
-          <View style={styles.row}>
-            <Button
-              style={styles.clearButton}
-              type="clear"
-              title="Forgot Password?"
-            />
-            <Button
-              style={styles.clearButton}
-              type="clear"
-              title="Register"
-              onPress={() => this.register()}
-            />
-          </View>
-          <View />
-          <View />
-          <Button
-            style={styles.clearButton}
-            type="clear"
-            title="Skip"
-            onPress={() => this.home()}
-          />
-        </View>
-        <Text style={styles.errorTextStyle}>{this.state.error}</Text>
-      </Container>
-    );
+    <View style={styles.imageLayout}>
+      <Image
+        source={assetsObject.logo}
+        style={styles.logo}
+        resizeMode="contain"
+      />
+    </View>
+    <View style={styles.layout}>
+      <Input
+        placeholder="example@google.com"
+        label="Email"
+        onChangeText={email => setEmail(email)}
+        value={email}
+      />
+      <Input
+        placeholder="******"
+        label="Password"
+        secureTextEntry
+        onChangeText={password => setPassword(password)}
+        value={password}
+      />
+      <Button
+        style={styles.submitButton}
+        title="Login"
+        onPress={() => signin()}
+      />
+      <View style={styles.row}>
+        <Button
+          style={styles.clearButton}
+          type="clear"
+          title="Forgot Password?"
+        />
+        <Button
+          style={styles.clearButton}
+          type="clear"
+          title="Register"
+          onPress={() => register()}
+        />
+      </View>
+      <View />
+      <View />
+      <Button
+        style={styles.clearButton}
+        type="clear"
+        title="Skip"
+        onPress={() => home()}
+      />
+    </View>
+    <Text style={styles.errorTextStyle}>{error}</Text>
+  </Container>
+    )
   }
-}
+  }
 const styles = EStyleSheet.create({
   layout: {
     marginTop: 50,

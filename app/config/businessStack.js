@@ -1,5 +1,4 @@
 // import HomeBusiness from '../screens/Business/HomeBusiness';
-// import {createStackNavigator} from 'react-navigation-stack';
 // import AddPosition from '../screens/Business/AddPosition';
 
 // const BusinessStack = createStackNavigator(

@@ -1,108 +1,100 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {View, Text, ActivityIndicator} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { useNavigation } from '@react-navigation/native';
 
-class Register extends Component {
-  Register = () => {
-    this.setState({error: '', loading: true});
-    this.renderCurrentState();
+function Register({ route, navigation }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [accountType, setAccountType] = useState('')
+  function createUser() {
+    setError('');
+    setLoading(true);
     let db = firestore();
     auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .createUserWithEmailAndPassword(email, tpassword)
       .then(cred => {
         return db
           .collection('users')
           .doc(cred.user.uid)
           .set({
-            accountType: this.state.accountType,
+            accountType: accountType,
           });
       })
       .then(() => {
-        this.onLoginSuccess();
-        const {navigate} = this.props.navigation;
-        navigate('UserPath');
+        const navigation = useNavigation();
+        onLoginSuccess();
+        navigation.navigate('UserPath');
       })
       .catch(error => {
         let errorCode = error.code;
         let errorMessage = error.message;
         switch (errorCode) {
           case 'auth/weak-password':
-            this.onLoginFailure.bind(this)('Weak password!');
+            onLoginFailure('Weak password!');
             break;
           case 'auth/invalid-email':
-            this.onLoginFailure.bind(this)('This email is not vaild');
+            onLoginFailure('This email is not vaild');
             break;
           case 'auth/email-already-in-use':
-            this.onLoginFailure.bind(this)('This email is already registers');
+            onLoginFailure('This email is already registers');
             break;
           default:
-            this.onLoginFailure.bind(this)(
-              'Well something went wrong contact us' + errorMessage,
-            );
+            onLoginFailure('Well something went wrong contact us' + errorMessage);
         }
       });
   };
-  onLoginSuccess() {
-    this.setState({
-      email: '',
-      password: '',
-      error: '',
-      loading: false,
-    });
-  }
-  onLoginFailure(errorMessage) {
-    this.setState({error: errorMessage, loading: false});
-  }
-  state = {
-    email: '',
-    password: '',
-    error: '',
-    loading: false,
-    accountType: '',
+  function onLoginSuccess() {
+    setEmail('');
+    setPassword('');
+    setError('');
+    setLoading(false);
   };
-  componentDidMount() {
-    const param = this.props.navigation.getParam('registerType');
-    this.setState({accountType: param});
+  function onLoginFailure(errorMessage) {
+    setError(errorMessage);
+    setLoading(false);
   }
-  renderCurrentState() {
-    if (this.state.loading) {
-      return (
-        <View>
-          <ActivityIndicator size={'large'} style={styles.loader} />
-        </View>
-      );
-    }
+  
+  useEffect(()=> {
+    const param = route.param('registerType');
+    setAccountType(param)
+  }, [accountType])
+  if (loading) {
     return (
-      <View style={styles.layout}>
-        <Input
-          placeholder="example@google.com"
-          label="Email"
-          onChangeText={email => this.setState({email})}
-          value={this.state.email}
-        />
-        <Input
-          placeholder="******"
-          label="Password"
-          secureTextEntry
-          onChangeText={password => this.setState({password})}
-          value={this.state.password}
-        />
-        <Button
-          style={styles.submitButton}
-          title="Register"
-          onPress={() => this.Register()}
-        />
-        <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+      <View>
+        <ActivityIndicator size={'large'} style={styles.loader} />
       </View>
     );
   }
-  render() {
-    return <Container>{this.renderCurrentState()}</Container>;
-  }
+  return (
+    <View style={styles.layout}>
+      <Input
+        placeholder="example@google.com"
+        label="Email"
+        onChangeText={email => setEmail({email})}
+        value={email}
+      />
+      <Input
+        placeholder="******"
+        label="Password"
+        secureTextEntry
+        onChangeText={password => setPassword({password})}
+        value={password}
+      />
+      <Button
+        style={styles.submitButton}
+        title="Register"
+        onPress={() => createUser()}
+      />
+      <Text style={styles.errorTextStyle}>{error}</Text>
+    </View>
+  );
 }
 const styles = EStyleSheet.create({
   layout: {

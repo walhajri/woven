@@ -8,15 +8,16 @@ import firestore from '@react-native-firebase/firestore';
 import assetsObject from '../../assets/assets';
 import appliedJobState from './AppliedJobs'
 import colors from '../../assets/color';
+import { useNavigation } from '@react-navigation/native';
 
 class JobDetails extends Component {
   //NOTE: this method will trigger when the user will apply to job, and will check if the postion exists or not
   handlePress = () => {
+    const navigation = useNavigation();
     let [month, date, year] = (new Date()).toLocaleDateString().split("/");
     this.setState({loading: true});
     this.render();
     let db = firestore();
-    const {navigate} = this.props.navigation;
     if (auth().currentUser) {
       //TODO : move the the calls to the data folder
       const path = db.collection('appliedJobs');
@@ -34,7 +35,7 @@ class JobDetails extends Component {
         if (doc.exists) {
           //TODO: make a toast message telling the user that he is already applied for this job
           console.log("Already appiled to this job");
-          navigate('CandidateStatus', {status: {}});
+          navigation.navigate('CandidateStatus', {status: {}});
         } else {
           console.log('Applying for this job', doc.ref)
           job.set({
@@ -52,7 +53,7 @@ class JobDetails extends Component {
           .then(() => {
             //TODO: make sure to empty the navigation stack
             console.log("Document written with ID: ", job.id);
-            navigate('AppliedJobs');
+            navigation.navigate('AppliedJobs');
           })
           .catch(function(error) {
             console.error("Error adding document: ", error);
@@ -70,7 +71,7 @@ class JobDetails extends Component {
         console.log("Error getting document:", error);
       });
     } else {
-      navigate('Auth');
+      navigation.navigate('Auth');
     }
   };
   state = {

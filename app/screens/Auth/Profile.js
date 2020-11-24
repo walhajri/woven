@@ -3,57 +3,47 @@ import {Text, ActivityIndicator, Button, View} from 'react-native';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { useNavigation } from '@react-navigation/native';
 
-class Profile extends Component {
-  logout = () => {
-    this.setState({loading: true});
-    this.render();
+function Profile() {
+  const [loading, setLoading] = useState(false);
+  function logout() {
+    setLoading(true);
     auth()
       .signOut()
       .then(() => {
-        this.onLoginSuccess();
-        console.log('hi');
-        this.props.navigation.navigate('Visitor');
+        const navigation = useNavigation();
+        onLoginSuccess();
+        navigation.navigate('Visitor');
       });
   };
-  login = () => {
-    const {navigate} = this.props.navigation;
-    navigate('Profile');
+  function onLoginSuccess() {
+    setLoading(false);
   };
-  onLoginSuccess() {
-    this.setState({
-      loading: false,
-    });
+  if (loading) {
+    return (
+      <Container>
+        <View>
+          <ActivityIndicator size={'large'} style={styles.loader} />
+        </View>
+      </Container>
+    );
   }
-  state = {
-    loading: false,
-  };
-  render() {
-    if (this.state.loading) {
-      return (
-        <Container>
-          <View>
-            <ActivityIndicator size={'large'} style={styles.loader} />
-          </View>
-        </Container>
-      );
-    }
-    if (auth().currentUser) {
-      return (
-        <Container>
-          <Text style={styles.textStyle}>
-            Your Amazing Profile page {auth().currentUser.email}
-          </Text>
-          <Button
-            title="Logout"
-            onPress={() => this.logout()}
-            style={styles.submitButton}
-          />
-        </Container>
-      );
-    } else {
-      return <View />;
-    }
+  if (auth().currentUser) {
+    return (
+      <Container>
+        <Text style={styles.textStyle}>
+          Your Amazing Profile page {auth().currentUser.email}
+        </Text>
+        <Button
+          title="Logout"
+          onPress={() => logout()}
+          style={styles.submitButton}
+        />
+      </Container>
+    );
+  } else {
+    return <View />;
   }
 }
 const styles = EStyleSheet.create({

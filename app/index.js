@@ -1,6 +1,9 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import MainStack from './config/routes';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 EStyleSheet.build({
   $primaryColor: '#00bcd4',
@@ -14,4 +17,10 @@ EStyleSheet.build({
   $warning: 'red',
 });
 
-export default () => <MainStack />;
+export default () => {
+  return(
+  <NavigationContainer>
+    <MainStack />
+  </NavigationContainer>
+  )
+}
