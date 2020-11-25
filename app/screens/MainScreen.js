@@ -1,16 +1,14 @@
 // import React,  from 'react';
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {View, Image} from 'react-native';
 import {Container} from '../components/Container';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { useNavigation } from '@react-navigation/native';
 
-class MainScreen extends Component {
-  constructor(props) {
-    const navigation = useNavigation();
-    super(this.props)
+function MainScreen({ route, navigation }){
+
+  useEffect(()=>{
     let db = firestore();
     if (auth().currentUser) {
       db.collection('users')
@@ -23,21 +21,20 @@ class MainScreen extends Component {
     } else {
       navigation.navigate('Auth');
     }
+  });
+  return (
+    <Container>
+      <View style={styles.imageLayout}>
+        <Image
+          source={require('../data/images/logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
+    </Container>
+  );
   }
-  render() {
-    return (
-      <Container>
-        <View style={styles.imageLayout}>
-          <Image
-            source={require('../data/images/logo.png')}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-        </View>
-      </Container>
-    );
-  }
-}
+
 const styles = EStyleSheet.create({
   logo: {
     marginTop: 150,
