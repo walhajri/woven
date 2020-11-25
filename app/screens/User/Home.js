@@ -15,7 +15,9 @@ function Home({ route, navigation }) {
     navigation.navigate('login');
   };
   useEffect(()=>{
-    let positionList = await offers();
+    //initial line
+    //let positionList = await offers();
+    let positionList = offers();
     setPositions(positionList);
 
   });

@@ -18,7 +18,9 @@ function AppliedJob({navigation}) {
     navigation.addListener('willFocus', () => {
       //empty
     })
-    let positions = await appliedJobsUpdate();
+    //initial line
+    //let positions = await appliedJobsUpdate();
+    let positions = appliedJobsUpdate();
     // let status = await appliedJobStatusUpdate();
     setAppliedPositions(positions);
     // setAppliedJobStatus(status);

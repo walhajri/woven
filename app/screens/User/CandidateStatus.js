@@ -12,7 +12,8 @@ function CandidateStatus({ route, navigation }) {
 
 useEffect(()=>{
   const param = route.param('item');
-  let status = await appliedJobStatus(param.position,param.seekerID);
+  //let status = await appliedJobStatus(param.position,param.seekerID);
+  let status = appliedJobStatus(param.position,param.seekerID);
   setPosition(status);
 
 });

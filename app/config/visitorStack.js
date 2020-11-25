@@ -1,6 +1,5 @@
 import Login from '../screens/Auth/Login';
 import Profile from '../screens/Auth/Profile';
-import PreRegister from '../screens/Auth/PreRegister';
 import Home from '../screens/User/Home';
 import JobDetails from '../screens/User/JobDetails';
 import { createStackNavigator } from '@react-navigation/stack';
