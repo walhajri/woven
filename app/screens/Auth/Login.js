@@ -7,19 +7,16 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import assetsObject from '../../assets/assets';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { useNavigation } from '@react-navigation/native';
 
 Icon.loadFont();
-function Login() {
+function Login({ route, navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   function signin() {
-      const navigation = useNavigation();
       setError();
       setLoading(true);
-      useEffect();
       auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
@@ -76,10 +73,10 @@ function Login() {
   function home() {
     navigation.navigate('Visitor');
   };
-  useEffect(()=> {
+  // useEffect(()=> {
 
 
-  }, [loading])
+  // }, [loading])
   if (loading) {
     return (
       <View>

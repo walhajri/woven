@@ -3,16 +3,14 @@ import {Text, ActivityIndicator, Button, View} from 'react-native';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { useNavigation } from '@react-navigation/native';
 
-function Profile() {
+function Profile({ route, navigation }) {
   const [loading, setLoading] = useState(false);
   function logout() {
     setLoading(true);
     auth()
       .signOut()
       .then(() => {
-        const navigation = useNavigation();
         onLoginSuccess();
         navigation.navigate('Visitor');
       });

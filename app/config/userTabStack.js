@@ -1,6 +1,7 @@
 import UserStack from './homeStack';
 import AppliedJobStack from './appliedJobStack';
 import AppliedJobs from '../screens/User/AppliedJobs';
+import Home from '../screens/User/Home';
 import Profile from '../screens/Auth/Profile';
 import React, {Component} from 'react';
 import assetsObject from '../assets/assets';

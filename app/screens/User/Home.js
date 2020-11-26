@@ -5,7 +5,7 @@ import {ListItem, Separator} from '../../components/List';
 import {Container} from '../../components/Container';
 
 function Home({ route, navigation }) {
-  const [positions, setPositions] = useState({})
+  const [positions, setPositions] = useState([])
 
   handlePress = item => {
     navigation.navigate('JobDetails', {item: item});
@@ -20,7 +20,7 @@ function Home({ route, navigation }) {
     let positionList = offers();
     setPositions(positionList);
 
-  });
+  },[positions]);
   return (
     <Container>
       <View>

@@ -8,7 +8,6 @@ import firestore from '@react-native-firebase/firestore';
 import assetsObject from '../../assets/assets';
 import appliedJobState from './AppliedJobs'
 import colors from '../../assets/color';
-import { useNavigation } from '@react-navigation/native';
 
 function JobDetails({ route, navigation }) {
   const [loading, setLoading] = useState(false);
@@ -16,7 +15,6 @@ function JobDetails({ route, navigation }) {
 
   //NOTE: this method will trigger when the user will apply to job, and will check if the postion exists or not
   handlePress = () => {
-    // const navigation = useNavigation();
     let [month, date, year] = (new Date()).toLocaleDateString().split("/");
     setLoading(true);
     let db = firestore();
