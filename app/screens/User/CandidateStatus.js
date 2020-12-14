@@ -16,7 +16,7 @@ useEffect(()=>{
   let status = appliedJobStatus(param.position,param.seekerID);
   setPosition(status);
 
-});
+},[]);
   return (
     <Timeline
       circleSize={20}

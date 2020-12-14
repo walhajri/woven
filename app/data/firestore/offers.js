@@ -2,7 +2,7 @@ import firestore from '@react-native-firebase/firestore';
 let db = firestore();
 let positions = [];
 async function getPositions() {
-  await db
+    await db
     .collection('positions')
     .get()
     .then(snapshot => {
@@ -10,9 +10,11 @@ async function getPositions() {
         let data = doc.data();
         data.position = doc.id;
         positions.push(data);
+        return positions;
       });
-    });
-  return positions;
+    });   
+    console.log('data stream out', positions.length);
+    return positions;
 }
 // console.log(positions);
 export default getPositions;

@@ -28,7 +28,7 @@ function AppliedJob({navigation}) {
     }else{
       setEmpty(false);
     }
-  })
+  },[])
   handlePress = item => {
     navigation.navigate('CandidateStatus', {item: item});
   };

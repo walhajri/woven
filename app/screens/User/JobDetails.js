@@ -77,7 +77,7 @@ function JobDetails({ route, navigation }) {
   useEffect(()=>{
     const param = navigation.getParam('item');
     setPosition(param);
-  })
+  },[])
   if (loading) {
     return (
       <View>
