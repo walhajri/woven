@@ -75,8 +75,8 @@ function JobDetails({ route, navigation }) {
     }
   };
   useEffect(()=>{
-    const param = navigation.getParam('item');
-    setPosition(param);
+    const param = route.params;
+    setPosition(param.item);
   },[])
   if (loading) {
     return (

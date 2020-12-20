@@ -2,6 +2,7 @@ import UserStack from './homeStack';
 import AppliedJobStack from './appliedJobStack';
 import AppliedJobs from '../screens/User/AppliedJobs';
 import Home from '../screens/User/Home';
+import homeStack from '../config/homeStack'
 import Profile from '../screens/Auth/Profile';
 import React, {Component} from 'react';
 import assetsObject from '../assets/assets';
@@ -15,7 +16,7 @@ function UserTabStack() {
   return(
     <Tab.Navigator>
       <Tab.Screen name="AppliedJobs" component={AppliedJobs} />
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Home" component={homeStack} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
