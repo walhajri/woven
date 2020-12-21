@@ -8,27 +8,17 @@ import assetsObject from '../../assets/assets';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 function AppliedJob({navigation}) {
-  const [appliedPositions, setAppliedPositions] = useState({});
-  // const [appliedJobStatus, setAppliedJobStatus] = useState({});
+  const [appliedPositions, setAppliedPositions] = useState([]);
   const [empty, setEmpty] = useState(false);
 
   useEffect(() =>{
-    //this will fire every time AppliedJob receives navigation focus and it will re-render the screen
-    // navigation.addListener('willFocus', () => {
-    //   //empty
-    // })
-    //initial line
-    //let positions = await appliedJobsUpdate();
-    let positions = appliedJobsUpdate();
-    // let status = await appliedJobStatusUpdate();
-    setAppliedPositions(positions);
-    // setAppliedJobStatus(status);
-    if (positions.length === 0) {
-      setEmpty(true);
-    }else{
+    appliedJobsUpdate().then((appliedPositions)=> setAppliedPositions(appliedPositions));
+    if (appliedPositions.length === 0) {
       setEmpty(false);
+    }else{
+      setEmpty(true);
     }
-  },[])
+  },[appliedPositions.length])
   handlePress = item => {
     navigation.navigate('CandidateStatus', {item: item});
   };

@@ -14,7 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Tab = createBottomTabNavigator();
 function UserTabStack() {
   return(
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="Home">
       <Tab.Screen name="AppliedJobs" component={AppliedJobs} />
       <Tab.Screen name="Home" component={homeStack} />
       <Tab.Screen name="Profile" component={Profile} />

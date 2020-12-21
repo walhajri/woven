@@ -10,7 +10,6 @@ async function getPositions() {
         let data = doc.data();
         data.position = doc.id;
         positions.push(data);
-        return positions;
       });
     });   
     console.log('data stream out', positions.length);

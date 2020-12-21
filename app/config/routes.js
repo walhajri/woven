@@ -9,15 +9,20 @@ import BusinessStack from './businessStack';
 import CandidateStatus from '../screens/User/CandidateStatus';
 import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
 function MainStack() {
   return (
-    <Stack.Navigator initialRouteName="MainScreen">
-      <Stack.Screen name="MainScreen" component={MainScreen} />
-      <Stack.Screen name="UserPath" component={UserTabStack} />
-      <Stack.Screen name="Auth" component={AuthStack} />
-      <Stack.Screen name="Visitor" component={VisitorStack} />
-    </Stack.Navigator>
+    <RootStack.Navigator initialRouteName="MainScreen">
+      <RootStack.Screen name="MainScreen" 
+        component={MainScreen} 
+        options={({ navigation, route }) => ({
+          headerShown: false,
+        })}
+      />
+      <RootStack.Screen name="UserPath" component={UserTabStack} />
+      <RootStack.Screen name="Auth" component={AuthStack} />
+      <RootStack.Screen name="Visitor" component={VisitorStack} />
+    </RootStack.Navigator>
   );
 }
 

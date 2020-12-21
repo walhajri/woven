@@ -17,9 +17,9 @@ function Home({ route, navigation }) {
   useEffect(()=>{
     //initial line
     // let positionList = await offers();
-    let positionList = offers().then((positions)=> setPositions(positions));
+    offers().then((positions)=> setPositions(positions));
     //setPositions(positionList);
-    console.log('Home', positionList);
+    //console.log('Home', positionList);
 
   }, []);
   return (

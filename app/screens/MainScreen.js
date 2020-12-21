@@ -15,13 +15,18 @@ function MainScreen({ route, navigation }){
         .doc(auth().currentUser.uid)
         .get()
         .then(doc => {
-          let User = 'UserPath';
-          navigation.navigate(User);
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'UserPath' }],
+          });
         });
     } else {
-      navigation.navigate('Auth');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Auth' }],
+      });
     }
-  });
+  },[]);
   return (
     <Container>
       <View style={styles.imageLayout}>
