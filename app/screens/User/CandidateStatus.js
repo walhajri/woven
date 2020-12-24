@@ -11,11 +11,9 @@ function CandidateStatus({ route, navigation }) {
   const [loading, setLoading] = useState(false);
 
 useEffect(()=>{
-  const param = route.param('item');
+  const param = route.params.item;
   //let status = await appliedJobStatus(param.position,param.seekerID);
-  let status = appliedJobStatus(param.position,param.seekerID);
-  setPosition(status);
-
+  appliedJobStatus(param.position,param.seekerID).then((status)=> setPosition(status));
 },[]);
   return (
     <Timeline

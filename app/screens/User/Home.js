@@ -15,12 +15,8 @@ function Home({ route, navigation }) {
     navigation.navigate('login');
   };
   useEffect(()=>{
-    //initial line
-    // let positionList = await offers();
     offers().then((positions)=> setPositions(positions));
-    //setPositions(positionList);
-    //console.log('Home', positionList);
-
+    console.log(JSON.stringify(positions.length));
   }, []);
   return (
     <Container>

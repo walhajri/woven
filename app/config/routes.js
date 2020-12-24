@@ -22,6 +22,7 @@ function MainStack() {
       <RootStack.Screen name="UserPath" component={UserTabStack} />
       <RootStack.Screen name="Auth" component={AuthStack} />
       <RootStack.Screen name="Visitor" component={VisitorStack} />
+      <RootStack.Screen name="CandidateStatus" component={CandidateStatus} />
     </RootStack.Navigator>
   );
 }
