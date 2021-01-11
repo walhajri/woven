@@ -15,8 +15,8 @@ const Tab = createBottomTabNavigator();
 function UserTabStack() {
   return(
     <Tab.Navigator initialRouteName="Home">
-      <Tab.Screen name="AppliedJobs" component={AppliedJobs} />
-      <Tab.Screen name="Home" component={homeStack} />
+      <Tab.Screen name="AppliedJobsStack" component={AppliedJobStack} />
+      <Tab.Screen name="HomeStack" component={homeStack} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );

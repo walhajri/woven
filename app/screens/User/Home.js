@@ -3,12 +3,29 @@ import {FlatList, View,Image} from 'react-native';
 import offers from '../../data/firestore/offers';
 import {ListItem, Separator} from '../../components/List';
 import {Container} from '../../components/Container';
+import Toast from 'react-native-simple-toast';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+
 
 function Home({ route, navigation }) {
-  const [positions, setPositions] = useState([])
+  const [positions, setPositions] = useState([]);
+  const [position, setPosition] = useState({});
+
 
   handlePress = item => {
-    navigation.navigate('JobDetails', {item: item});
+    let db = firestore();
+    const path = db.collection('appliedJobs');
+    const job = path.doc(auth().currentUser.uid+item.position);
+    job.get().then(function(doc) {
+      if (doc.exists) {
+        Toast.show('Already appiled to this job');
+        navigation.navigate('CandidateStatus', {item: item});
+      }
+      else{
+        navigation.push('JobDetails', {item: item});
+      }
+    });
   };
 
   login = () => {
@@ -16,7 +33,6 @@ function Home({ route, navigation }) {
   };
   useEffect(()=>{
     offers().then((positions)=> setPositions(positions));
-    console.log(JSON.stringify(positions.length));
   }, []);
   return (
     <Container>

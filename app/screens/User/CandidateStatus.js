@@ -4,6 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import appliedJobStatus from '../../data/firestore/appliedJobStatus';
 import Timeline from 'react-native-timeline-flatlist';
 import colors from '../../assets/color'
+import auth from '@react-native-firebase/auth';
 
 Icon.loadFont();
 function CandidateStatus({ route, navigation }) {
@@ -12,8 +13,8 @@ function CandidateStatus({ route, navigation }) {
 
 useEffect(()=>{
   const param = route.params.item;
-  //let status = await appliedJobStatus(param.position,param.seekerID);
-  appliedJobStatus(param.position,param.seekerID).then((status)=> setPosition(status));
+  const seekerID = auth().currentUser.uid;
+  appliedJobStatus(param.position,seekerID).then((status)=> setPosition(status));
 },[]);
   return (
     <Timeline

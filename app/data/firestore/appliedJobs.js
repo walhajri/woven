@@ -14,7 +14,6 @@ async function getAppliedJobs() {
         finalList.push(data);
     });
     });
-  console.log(JSON.stringify('applied job out '+finalList.length));
   return finalList;
 }
 export default getAppliedJobs;
