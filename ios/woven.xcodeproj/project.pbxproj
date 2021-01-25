@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* wovenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* wovenTests.m */; };
+		0D40F72125BEBD8300597206 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 0D40F72025BEBD8300597206 /* fonts */; };
 		0DEBD17423BA7D4E00E4FB3B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DEBD17323BA7D4E00E4FB3B /* GoogleService-Info.plist */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
@@ -46,6 +47,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* wovenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wovenTests.m; sourceTree = "<group>"; };
 		0654D264A36DBE971CAB670D /* Pods_woven.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_woven.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D40F72025BEBD8300597206 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		0DEBD17323BA7D4E00E4FB3B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* woven.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = woven.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = woven/AppDelegate.h; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0D40F72025BEBD8300597206 /* fonts */,
 				0DEBD17323BA7D4E00E4FB3B /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* woven */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -350,6 +353,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				0DEBD17423BA7D4E00E4FB3B /* GoogleService-Info.plist in Resources */,
+				0D40F72125BEBD8300597206 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

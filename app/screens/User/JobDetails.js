@@ -8,7 +8,6 @@ import firestore from '@react-native-firebase/firestore';
 import assetsObject from '../../assets/assets';
 import appliedJobState from './AppliedJobs'
 import colors from '../../assets/color';
-import UserTabStack from '../../config/userTabStack';
 import Toast from 'react-native-simple-toast';
 
 function JobDetails({ route, navigation }) {
@@ -50,7 +49,7 @@ function JobDetails({ route, navigation }) {
           .then(() => {
             //TODO: make sure to empty the navigation stack
             console.log("Document written with ID: ", job.id);
-            navigation.navigate('AppliedJobs');
+            //navigation.navigate('AppliedJobs');
           })
           .catch(function(error) {
             console.error("Error adding document: ", error);
@@ -67,7 +66,7 @@ function JobDetails({ route, navigation }) {
         console.log("Error getting document:", error);
       });
     } else {
-      navigation.navigate('Auth');
+      //navigation.navigate('Auth');
     }
   };
   useEffect(()=>{

@@ -8,13 +8,36 @@ import React, {Component} from 'react';
 import assetsObject from '../assets/assets';
 import {Image} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
+import colors from '../assets/color';
 
 
 
 const Tab = createBottomTabNavigator();
 function UserTabStack() {
+  Icon.loadFont();
   return(
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="HomeStack"
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'HomeStack') {
+            iconName = 'home';
+          } else if (route.name === 'Profile') {
+            iconName = 'person';
+          } else if (route.name === 'AppliedJobsStack') {
+            iconName = 'briefcase';
+          }
+
+          // You can return any component that you like here!
+          return <Icon name={iconName} size={size} color={color} />;
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: colors.success,
+        inactiveTintColor: colors.gray,
+      }} >
       <Tab.Screen name="AppliedJobsStack" component={AppliedJobStack} />
       <Tab.Screen name="HomeStack" component={homeStack} />
       <Tab.Screen name="Profile" component={Profile} />

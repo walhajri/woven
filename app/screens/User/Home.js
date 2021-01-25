@@ -23,7 +23,7 @@ function Home({ route, navigation }) {
         navigation.navigate('CandidateStatus', {item: item});
       }
       else{
-        navigation.push('JobDetails', {item: item});
+        navigation.navigate('JobDetails', {item: item});
       }
     });
   };
