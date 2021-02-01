@@ -73,10 +73,12 @@ function Login({ route, navigation }) {
   function home() {
     navigation.navigate('Visitor');
   };
-  // useEffect(()=> {
+  useEffect(()=> {
+    if (auth().currentUser) {
+      navigation.navigate('Profile');
+    }
 
-
-  // }, [loading])
+  }, [])
   if (loading) {
     return (
       <View>

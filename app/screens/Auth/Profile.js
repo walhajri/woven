@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import {Text, ActivityIndicator, Button, View} from 'react-native';
+import {Text, ActivityIndicator, Button, View, FlatList} from 'react-native';
 import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
+import {ProfileListItem, Separator} from '../../components/ProfileList/';
+import DATA from '../../data/local/profileListData'
 function Profile({ route, navigation }) {
+  
   const [loading, setLoading] = useState(false);
   function logout() {
     setLoading(true);
@@ -15,6 +17,14 @@ function Profile({ route, navigation }) {
         navigation.navigate('Visitor');
       });
   };
+  function openDetails(item){
+    return
+  }
+  const Item = ({ title }) => (
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  );
   function onLoginSuccess() {
     setLoading(false);
   };
@@ -26,18 +36,34 @@ function Profile({ route, navigation }) {
         </View>
       </Container>
     );
-  }
+}
   if (auth().currentUser) {
     return (
       <Container>
-        <Text style={styles.textStyle}>
-          Your Amazing Profile page {auth().currentUser.email}
-        </Text>
-        <Button
-          title="Logout"
-          onPress={() => logout()}
-          style={styles.submitButton}
-        />
+          <View>
+          <FlatList
+            data={DATA}
+            renderItem={({item}) => (
+              <ProfileListItem
+                iconName={item.iconName}
+                title={item.title}
+                description={item.description}
+                numberOf={item.numberOf}
+                onPress={() => this.openDetails(item)}
+              />
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            ItemSeparatorComponent={Separator}
+          />
+          </View>
+          <Text style={styles.textStyle}>
+            Your Amazing Profile page {auth().currentUser.email}
+          </Text>
+          <Button
+            title="Logout"
+            onPress={() => logout()}
+            style={styles.submitButton}
+          />
       </Container>
     );
   } else {

@@ -10,6 +10,7 @@ import {Image} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../assets/color';
+import AuthStack from './authStack';
 
 
 
@@ -40,50 +41,8 @@ function UserTabStack() {
       }} >
       <Tab.Screen name="AppliedJobsStack" component={AppliedJobStack} />
       <Tab.Screen name="HomeStack" component={homeStack} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Profile" component={AuthStack} />
     </Tab.Navigator>
   );
 }
 export default UserTabStack;
-// const UserTabStack = createBottomTabNavigator({
-//   // changing the applied jobs screen with UserStack will not load new appiledJobs
-//   AppliedJobs: {
-//     screen: AppliedJobStack,
-//     navigationOptions: {
-//       tabBarLabel: () => {
-//         return null;
-//       },
-//       tabBarIcon: () => (
-//         <Image
-//           source={assetsObject.workIcon}
-//         />
-//       )
-//     }
-//   },
-//   Home: {
-//     screen: UserStack,
-//     navigationOptions: {
-//       tabBarLabel: () => {
-//         return null;
-//       },
-//       tabBarIcon: () => (
-//         <Image
-//           source={assetsObject.homeIcon}
-//         />
-//       )
-//     }
-//   },
-//   Profile: {
-//     screen: Profile,
-//     navigationOptions: {
-//       tabBarLabel: () => {
-//         return null;
-//       },
-//       tabBarIcon: () => (
-//         <Image
-//           source={assetsObject.accountIcon}
-//         />
-//       )
-//     }
-//   },
-// });

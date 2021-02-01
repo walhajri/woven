@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import UserStack from './homeStack';
 import CandidateStatus from '../screens/User/CandidateStatus';
 import { createStackNavigator } from '@react-navigation/stack';
+import colors from '../assets/color';
 
 const RootStack = createStackNavigator();
 function MainStack() {
@@ -30,17 +31,3 @@ function MainStack() {
 }
 
 export default MainStack;
-
-// const MainStack = createAppContainer(
-//   createSwitchNavigator(
-//     {
-//       MainScreen: MainScreen,
-//       UserPath: UserTabStack,
-//       Auth: AuthStack,
-//       Visitor: VisitorStack,
-//     },
-//     {
-//       initialRouteName: 'MainScreen',
-//     },
-//   ),
-// );
