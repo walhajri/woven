@@ -14,18 +14,23 @@ function Home({ route, navigation }) {
 
 
   handlePress = item => {
-    let db = firestore();
-    const path = db.collection('appliedJobs');
-    const job = path.doc(auth().currentUser.uid+item.position);
-    job.get().then(function(doc) {
-      if (doc.exists) {
-        Toast.show('Already appiled to this job');
-        navigation.navigate('CandidateStatus', {item: item});
-      }
-      else{
-        navigation.navigate('JobDetails', {item: item});
-      }
-    });
+    if(auth().currentUser){
+      let db = firestore();
+      const path = db.collection('appliedJobs');
+      const job = path.doc(auth().currentUser.uid+item.position);
+      job.get().then(function(doc) {
+        if (doc.exists) {
+          Toast.show('Already appiled to this job');
+          navigation.navigate('CandidateStatus', {item: item});
+        }
+        else{
+          navigation.navigate('JobDetails', {item: item});
+        }
+      });
+    }
+    else{
+      navigation.navigate('JobDetails', {item: item});
+    }
   };
 
   login = () => {

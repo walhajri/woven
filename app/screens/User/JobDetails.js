@@ -16,10 +16,10 @@ function JobDetails({ route, navigation }) {
 
   //NOTE: this method will trigger when the user will apply to job, and will check if the postion exists or not
   handlePress = () => {
+    if (auth().currentUser) {
     let [month, date, year] = (new Date()).toLocaleDateString().split("/");
     setLoading(true);
     let db = firestore();
-    if (auth().currentUser) {
       //TODO : move the the calls to the data folder
       const path = db.collection('appliedJobs');
       const job = path.doc(auth().currentUser.uid+position.position);
@@ -66,7 +66,9 @@ function JobDetails({ route, navigation }) {
         console.log("Error getting document:", error);
       });
     } else {
-      //navigation.navigate('Auth');
+      navigation.navigate('Auth');
+      //TODO: Put it in string file
+      Toast.show('You need to login first to apply for a job');
     }
   };
   useEffect(()=>{
