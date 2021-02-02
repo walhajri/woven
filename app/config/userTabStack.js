@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../assets/color';
 import AuthStack from './authStack';
+import AccountStack from './accountStack';
 
 
 
@@ -41,7 +42,7 @@ function UserTabStack() {
       }} >
       <Tab.Screen name="AppliedJobsStack" component={AppliedJobStack} />
       <Tab.Screen name="HomeStack" component={homeStack} />
-      <Tab.Screen name="Profile" component={AuthStack} />
+      <Tab.Screen name="Profile" component={AccountStack} />
     </Tab.Navigator>
   );
 }

@@ -1,13 +1,10 @@
-import Login from '../screens/Auth/Login';
-import Profile from '../screens/Auth/Profile';
-import Register from '../screens/Auth/Register';
-import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import colors from '../assets/color';
-
+import Profile from '../screens/Auth/Profile';
+import { createStackNavigator } from '@react-navigation/stack';
+import colors from '../assets/color'
 
 const Stack = createStackNavigator();
-function AuthStack() {
+function AccountStack() {
       return(
         <Stack.Navigator
         screenOptions={({ navigation, route }) => ({
@@ -19,9 +16,8 @@ function AuthStack() {
             fontWeight: 'bold',
           },
         })}>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
       );
 }
-export default AuthStack;
+export default AccountStack;
