@@ -4,10 +4,21 @@ import {Container} from '../../components/Container';
 import auth from '@react-native-firebase/auth';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {ProfileListItem, Separator} from '../../components/ProfileList/';
-import DATA from '../../data/local/profileListData'
+import profileListData from '../../data/local/profileListData';
+import offers from '../../data/firestore/offers';
+import appliedJobsUpdate from '../../data/firestore/appliedJobs';
+
 function Profile({ route, navigation }) {
-  
+
   const [loading, setLoading] = useState(false);
+  const [ProfileList, setProfileList] = useState([]);
+ 
+  useEffect(() =>{
+    appliedJobsUpdate().then((appliedPositions)=> {
+      profileListData(appliedPositions.length).then((ProfileList)=> setProfileList(ProfileList));
+    });
+  },[])
+
   function logout() {
     setLoading(true);
     auth()
@@ -17,14 +28,11 @@ function Profile({ route, navigation }) {
         navigation.navigate('Visitor');
       });
   };
+
   function openDetails(item){
     return
   }
-  const Item = ({ title }) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
+ 
   function onLoginSuccess() {
     setLoading(false);
   };
@@ -42,7 +50,7 @@ function Profile({ route, navigation }) {
       <Container>
           <View>
           <FlatList
-            data={DATA}
+            data={ProfileList}
             renderItem={({item}) => (
               <ProfileListItem
                 iconName={item.iconName}

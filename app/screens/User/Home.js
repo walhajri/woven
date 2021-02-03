@@ -10,9 +10,6 @@ import firestore from '@react-native-firebase/firestore';
 
 function Home({ route, navigation }) {
   const [positions, setPositions] = useState([]);
-  const [position, setPosition] = useState({});
-
-
   handlePress = item => {
     if(auth().currentUser){
       let db = firestore();
@@ -32,7 +29,6 @@ function Home({ route, navigation }) {
       navigation.navigate('JobDetails', {item: item});
     }
   };
-
   login = () => {
     navigation.navigate('login');
   };
