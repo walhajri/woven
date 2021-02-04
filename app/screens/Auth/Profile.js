@@ -30,6 +30,12 @@ function Profile({ route, navigation }) {
   };
 
   function openDetails(item){
+    if(item.title == 'Logout'){
+      logout();
+    }
+    else{
+      console.log('do something else');
+    }
     return
   }
  
@@ -57,21 +63,13 @@ function Profile({ route, navigation }) {
                 title={item.title}
                 description={item.description}
                 numberOf={item.numberOf}
-                onPress={() => this.openDetails(item)}
+                onPress={() => openDetails(item)}
               />
             )}
             keyExtractor={(item, index) => index.toString()}
             ItemSeparatorComponent={Separator}
           />
           </View>
-          <Text style={styles.textStyle}>
-            Your Amazing Profile page {auth().currentUser.email}
-          </Text>
-          <Button
-            title="Logout"
-            onPress={() => logout()}
-            style={styles.submitButton}
-          />
       </Container>
     );
   } else {

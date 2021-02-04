@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 async function profileListData(num) {
   console.log('here');
   
+  //TODO: put all string in one place
   let DATA = [
     {
       //id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -22,10 +23,10 @@ async function profileListData(num) {
     },
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Employers Review',
-      iconName: 'reader-sharp',
+      title: 'Logout',
+      iconName: 'exit-outline',
       description: 'None',
-      numberOf: '12',
+      numberOf: 'None',
     },
   ];  
   console.log('data ',DATA.length);
